@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20tail%20Command_files/belug1.css">
+
+<title>The tail Command</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The tail Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>tail</i> <a href="http://www.linfo.org/command.html">command</a> reads the final few lines of any text given to it as an input and writes them to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a> (which, by default, is the monitor screen).
+</p>
+
+<p>
+The basic syntax for tail is:
+</p>
+
+<blockquote>
+<p>
+<code>tail [options] [filenames]</code>
+</p>
+</blockquote>
+
+<p>
+The square brackets indicate that the enclosed items are optional. By 
+default, tail returns the final ten lines of each file name that is 
+provided to it. 
+</p>
+
+<p>
+For example, the following command will <i>print</i> (traditional Unix terminology for <i>write</i>) the last ten lines of the file named <i>aardvark</i> in the <i>current directory</i> (i.e., the director in which the user is currently working) to the display screen:
+</p>
+
+<blockquote>
+<p>
+<code>tail aardvark</code>
+</p>
+</blockquote>
+
+<p>
+If more than one input file is provided, tail will print the last ten 
+lines from each file to the monitor screen. Each set of lines will be 
+preceded by the name of the file and separated by one vertical space 
+from other sets of lines. The following is an example of using tail with
+ multiple input files: 
+</p>
+
+<blockquote>
+<p>
+<code>tail aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+If it is desired to print some number of lines other than the default ten, the <i>-n</i>
+ option can be used followed by an integer indicating the number of 
+lines desired. For example, to print the final 15 lines from each file 
+in the above example, the command would be modified as follows:
+</p>
+
+<blockquote>
+<p>
+<code>tail -n15 aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+-n is a very tolerant option. For example, it is not necessary for the 
+integer to directly follow it without a space in between. Thus, the 
+following command would produce the same result:
+</p>
+
+<blockquote>
+<p>
+<code>tail -n &nbsp;  15 aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+In fact, the letter <i>n</i> does not even need to be used at all. Just 
+the hyphen and the integer (with no intervening space) are sufficient to
+ tell tail how many lines to print. Thus, the following would produce 
+the same result as the above commands:
+</p>
+
+<blockquote>
+<p>
+<code>tail -15 aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+tail can also print any desired number of <i>bytes</i> (i.e., a sequence of eight <a href="http://www.linfo.org/bit.html">bits</a> and usually long enough to represent a single <a href="http://www.linfo.org/character.html">character</a>) from the end of each file rather than a desired number of lines. This is accomplished using the <i>-c</i>
+ option followed by the number of bytes desired. For example, to view 
+the final five bytes of each of the two files aardvark and anteater, the
+ following command would be used: 
+</p>
+
+<blockquote>
+<p>
+<code>tail -c 5 aardvark anteater</code>
+</p>
+</blockquote>
+
+<p>
+When tail counts by bytes, it also includes the <i>newline character</i>, which is a <i>non-printing</i> (i.e, invisible) character that is designated by a backward slash and the letter <i>n</i> (i.e., <i>\n</i>).
+ Thus, for example, if there are three new, blank lines at the end of a 
+file, they will be counted as three characters, along with the <i>printing</i> characters (i.e., characters that are visible on the monitor screen or paper).
+</p>
+
+<p>
+The number of bytes or lines can be followed by a multiplier suffix. That is, adding the letter <i>b</i> directly after the number of bytes multiplies it by 512, <i>k</i> multiplies it by 1024 and <i>m</i> multiplies it by 1048576. Thus, the following command would print the last five kilobytes of the file aardvark:
+</p>
+
+<blockquote>
+<p>
+<code>tail -c5k aardvark</code>
+</p>
+</blockquote>
+
+<p>
+The -c option is less tolerant than the -n option. That is, there is no 
+default number of bytes, and thus some integer must be supplied. Also, 
+the letter <i>c</i> cannot be omitted as can the letter <i>n</i>, 
+because in such case tail would interpret the hyphen and integer 
+combination as the -n option. Thus, for example, the following would 
+produce an error message something like <i>tail: aardvark: invalid number of bytes</i>:
+</p>
+
+<blockquote>
+<p>
+<code>tail -c aardvark</code>
+</p>
+</blockquote>
+
+<p>
+If tail is used without any options or <a href="http://www.linfo.org/argument.html"><i>arguments</i></a>
+ (i.e., inputs), it will await input from the keyboard and will 
+successively repeat (i.e., each line will appear twice) on the monitor 
+screen each of the final ten lines typed on the keyboard. If it were 
+desired to repeat some number of lines other than the default ten, then 
+the -n option would be used followed by the integer representing that 
+number of lines (although, again, it is not necessary to include the 
+letter <i>n</i>), e.g.,
+</p>
+
+<blockquote>
+<p>
+<code>tail -n3</code>
+</p>
+</blockquote>
+
+<p>
+As is the case with other <i>command line</i> (i.e., all-text mode) programs in <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>, the output of tail can be <a href="http://www.linfo.org/redirection.html"><i>redirected</i></a> from the monitor to a file or printer using the <i>redirection operator</i>
+ (which is represented by a rightward pointing angular bracket). For 
+example, the following would write the final 12 lines of the file <i>Yuriko</i> to the file <i>December</i>:
+</p>
+
+<blockquote>
+<p>
+<code>tail -n 12 Yuriko &gt; December</code>
+</p>
+</blockquote>
+
+<p>
+If the file named December did not yet exist, the redirection operator 
+would create it; if it already existed, the redirection operator would 
+overwrite it. To avoid erasing data on an existing file, the <i>append operator</i>
+ (which is represented by two rightward pointing angular brackets) could
+ be used to add the output from tail to the end of a file with that name
+ if it already existed (or otherwise create a new file with that name), 
+i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>tail -n 12 Yuriko &gt;&gt; December</code>
+</p>
+</blockquote>
+
+<p>
+The output from other commands can be <a href="http://www.linfo.org/pipes.html"><i>piped</i></a> (i.e., sent) to tail to use as its input. For example, the following sends the output from the <i>ls</i>
+ command (which by default lists the names of the files and directories 
+in the current directory) to tail, which, in turn, prints the final ten 
+lines of the output that it receives from ls to the monitor screen:
+</p>
+
+<blockquote>
+<p>
+<code>ls | tail</code>
+</p>
+</blockquote>
+
+<p>
+This output could easily be redirected, for example to a file named <i>last_filenames</i> as follows: 
+</p>
+
+<blockquote>
+<p>
+<code>ls | tail &gt;&gt; last_filenames</code>
+</p>
+</blockquote>
+
+<p>
+It could also be piped to one or more filters for additional processing. For example, the <i>sort</i> filter could be used with its <i>-r</i> option to sort the output in reverse <a href="http://www.linfo.org/alphabet.html">alphabet</a>ic order prior to writing to a file: 
+</p>
+
+<blockquote>
+<p>
+<code>ls | tail | sort -r &gt;&gt; last_filenames</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-q</i> (i.e., <i>quiet</i>) option causes tail to not print the 
+file name before each set of lines and to eliminate the vertical space 
+between each set of lines when there are multiple input sources. The <i>-v</i> (i.e., <i>verbose</i>) option causes tail to print the file name even if there is just a single input file. 
+</p>
+
+<p>
+Tail could be viewed as a counterpart of the <a href="http://www.linfo.org/head.html"><i>head</i></a>
+ command, which always starts reading from the beginning of files and 
+which can continue until any specified distance from the beginning. 
+However, there are a few differences. Perhaps the most useful of these 
+is that tail is somewhat more flexible in that, in addition to being 
+able to start reading any specified distance from the end of a file, it 
+can also start at any specified distance from the beginning of a file. 
+</p>
+
+<p>
+Tail can be instructed to begin printing from some number of lines or 
+bytes from the start of a file by preceding the number with a plus sign 
+instead of a minus sign. For example, the following would print each of 
+the designated files to the display monitor beginning with the seventh 
+line and until the end:
+</p>
+
+<blockquote>
+<p>
+<code>tail +7 aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+The c option could be used to tell tail to print each of the designated 
+files beginning with the seventh byte instead of the seventh line:
+</p>
+
+<blockquote>
+<p>
+<code>tail +7c aardvark anteater armadillo</code>
+</p>
+</blockquote>
+
+<p>
+A particularly common application for tail is examining the most recent 
+entries in log files. This is because the newest entries are appended to
+ the ends of such files, which tail excels in showing. As log files can 
+be a rather long, this can eliminate a lot of scrolling that would be 
+necessary if some other command were used to read them. For example, the
+ most recent entries to the log <i>/var/log/messages</i> can easily be viewed by using the following:
+</p>
+
+<blockquote>
+<p>
+<code>tail /var/log/messages</code>
+</p>
+</blockquote>
+
+<p>
+As is the case with other programs on Unix-like operating systems, 
+additional information, including variations on specific versions, can 
+be obtained about the tail and head commands by consulting the built-in 
+manual and information pages using commands such as:
+</p>
+
+<blockquote>
+<p>
+<code>man tail</code>
+</p>
+</blockquote>
+
+<p>
+or
+</p>
+
+<blockquote>
+<p>
+<code>info head</code>
+</p>
+</blockquote>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created April 9, 2005.<br>
+Copyright © 2005 Bellevue Linux. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

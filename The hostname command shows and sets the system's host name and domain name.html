@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20hostname%20command%20shows%20and%20sets%20the%20system's%20host%20name%20and%20domain%20name_files/belug1.css">
+
+<title>The hostname command shows and sets the system's host name and domain name.</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The hostname Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>hostname</i> <a href="http://www.linfo.org/command.html">command</a> is used to show or set a computer's <a href="http://www.linfo.org/host_name.html"><i>host name</i></a> and <a href="http://www.linfo.org/domain_name.html"><i>domain name</i></a>. It is one of the most basic of the <a href="http://www.linfo.org/network.html">network</a> administrative utilities.  
+</p>
+
+<p>
+A host name is a name that is assigned to a <a href="http://www.linfo.org/host.html"><i>host</i></a> (i.e., a computer connected to the network) that uniquely identifies it on a <a href="http://www.linfo.org/network.html">network</a> and thus allows it to be addressed without using its full <a href="http://www.linfo.org/ip_address.html">IP address</a>. Domain names are user-friendly substitutes for numeric IP addresses.
+</p>
+
+<p>
+The basic syntax for the hostname command is 
+</p>
+
+<blockquote>
+<p>
+<code>hostname [options] [new_host_name]</code>
+</p>
+</blockquote>
+
+<p>
+When used without any <a href="http://www.linfo.org/option.html">options</a> or <a href="http://www.linfo.org/argument.html"><i>arguments</i></a> (i.e., input data), hostname displays the current host and domain names of the <a href="http://www.linfo.org/local_machine.html"><i>local machine</i></a> (i.e., the computer that is currently being used). The default host and domain name is typically <i>localhost.localdomain</i>.
+</p>
+
+<p>
+When a name is provided as an argument, it becomes the new host name. A change in the host name can only be performed by the <a href="http://www.linfo.org/root.html"><i>root</i></a> (i.e., administrative) account, which can be accessed using the  <a href="http://www.linfo.org/su.html"><i>su</i></a> (i.e., substitute user) command. For example, to change the host name to <i>computer_01</i>, the following would be used:
+</p>
+
+<blockquote>
+<p>
+<code>hostname computer_01</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-F</i> option changes the host and domain names to that written in a <a href="http://www.linfo.org/plain_text.html">plain text</a> file whose name is provided after this option as an argument. <i>Comments</i> (i.e., lines starting with a pound sign) in the file are ignored. Thus, for example, if a file named <i>name_1</i> were created that contained a line that consisted of  <i>morgan.localdomain</i>, then following would change the hostname to  <i>morgan.localdomain</i>:
+</p>
+
+<blockquote>
+<p>
+<code>hostname -F name_1</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-s</i> option displays the short host name, which is the part of 
+the name to the left of the first dot (e.g., localhost or morgan in the 
+above examples) i.e., 
+</p>
+
+<blockquote>
+<p>
+<code>hostname -s</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, the <i>-d</i> option displays only the domain name, i.e., the section to the right of the final dot (localdomain in the above examples). The <i>-a</i> option displays any <i>aliases</i> (i.e., substitute names) that are used for the host name. The <i>-i</i> option displays the IP address(es) of the host, which by default is 127.0.0.1.
+</p>
+
+<p>
+The <i>-v</i> (verbose) option provides additional information. The <i>-V</i> (upper case V) option displays version information, and the <i>-h</i> option displays a brief help message.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created December 20, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

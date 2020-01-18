@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20shred%20command%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the shred command by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The shred Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p> 
+Although it has some important limitations, the <i>shred</i> <a href="http://www.linfo.org/command.html">command</a> can be useful for destroying <a href="http://www.linfo.org/filedef.html">files</a>
+ so that their contents are very difficult or impossible to recover. 
+shred accomplishes its destruction by repeatedly overwriting files with 
+data patterns designed to do maximum damage so that it becomes difficult
+ to recover <a href="http://www.linfo.org/data.html">data</a> even using high-sensitivity data recovery equipment<font size="-1"><sup>1</sup></font>.
+</p>
+
+<p>
+Deleting a file with the <a href="http://www.linfo.org/rm.html"><i>rm</i></a>
+ command does not actually destroy the data; it merely destroys an index
+ listing the location of the file and makes the file's data blocks 
+available for reuse. Thus, a file deleted with rm can be easily 
+recovered using special utilities or commands if its freed data blocks 
+have not yet been reused. However, on an active system with a nearly 
+full <a href="http://www.linfo.org/hdd.html">hard disk drive</a> (HDD), freed space can be reused in a matter of minutes or even seconds. 
+</p>
+
+<p>
+shred's syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>shred [option(s)] file(s)_or_devices(s)</code>
+</p>
+</blockquote>
+
+<p>
+When used without any <a href="http://www.linfo.org/option.html">options</a>, shred will overwrite any designated files or <i>devices</i> 25 times, which is generally sufficient to remove all traces of the data on those files or devices. A device can be a <a href="http://www.linfo.org/partition.html">partition</a>
+ (i.e., logically independent section of a HDD) or even an entire HDD, 
+USB key drive, etc. Thus, for example, the following command could be 
+used securely destroy the three files named <i>file1</i>, <i>file2</i> and <i>file3</i>:
+</p>
+
+<blockquote>
+<p>
+<code>shred file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+This default number of overwritings can be changed by using the <i>-n</i>
+ option followed by an integer representing the desired number. This is 
+useful in the case of very large and/or numerous files, large 
+partitions, etc., as the time required for destruction can be 
+significantly reduced, but at the expense of the thoroughness of 
+destruction, by reducing the number of overwritings. 
+</p>
+
+<p>
+The effectiveness of shred relies on the very important assumption that the <a href="http://www.linfo.org/filesystem.html">filesystem</a>
+ overwrites data in place. However, many modern filesystems do not 
+satisfy this assumption, including journaled filesystems (such as Ext3 
+and ReiserFS), RAID-based filesystems, compressed filesystems, and 
+filesystems that cache data in temporary locations<font size="-1"><sup>2</sup></font>.
+ It should also be kept in mind that copies of files can be retained in 
+filesystem backups and on remote mirrors. This is just another reason 
+that careful consideration should be given in advance to the most 
+appropriate filesystems as well as backup and mirroring policies in 
+situations in which highly sensitive data is likely to be used.
+</p>
+
+<p>
+Thus, it is almost always more reliable to shred an entire partition 
+rather than just a file. For example, the following would destroy data 
+on the seventh partition on the first HDD:
+</p>
+
+<blockquote>
+<p>
+<code>shred /dev/hda7</code>
+</p>
+</blockquote>
+
+<p>
+However, even shredding entire partitions is not always completely reliable. One reason is that most HDDs map out bad <a href="http://www.linfo.org/sector.html">sectors</a> (i.e., sections on <a href="http://www.linfo.org/track.html">tracks</a>) invisibly to <a href="http://www.linfo.org/appslist.html">application programs</a>,
+ including shred and other utilities. Thus, if sensitive data is 
+contained in those sectors, shred will not be able to destroy it.   
+</p>
+
+<p>
+By default, shred does not delete files or partitions after overwriting 
+them. However, overwritten files can be deleted by using the <i>-u</i> option. This both frees up the disk space for other data and makes it even more difficult to reconstruct the <i>shredded</i> data (i.e., by allowing further overwriting of it). 
+</p>
+
+<p>
+Among shred's other options is <i>-f</i>, which <i>forces</i> shredding by changing <a href="http://www.linfo.org/permissions.html">permissions</a> if necessary. Also, the <i>-v</i>, or <i>--verbose</i>, option tells what is happening while shred is going about its work, and the <i>--version</i> option tells what version of shred is currently installed.
+</p>
+
+
+
+<br>
+
+<p>
+________
+<br>
+<font size="-1"><sup>1</sup></font>Even after overwriting data, it is possible for someone to take the HDD or other <a href="http://www.linfo.org/storage.html">storage</a>
+ device to a specialized data recovery laboratory and use highly 
+sensitive (and expensive) equipment to search for the faint traces of 
+the original data, which can be relatively easy to detect if it has been
+ overwritten only one or a few times. Thus, the best way to remove data 
+on a HDD irretrievably is to physically destroy the media on which it is
+ stored, such as by opening the drive and rubbing the individual <a href="http://www.linfo.org/platter.html">platters</a>
+ with sandpaper. However, as this can be tedious, shred provides a 
+alternative that can be almost as good but which requires much less 
+effort and cost.
+</p>
+
+<p>
+<font size="-1"><sup>2</sup></font>If one is not certain as to how a 
+filesystem operates, then it should be assumed that it does not 
+overwrite data in place, and thus that shred cannot operate reliably on 
+files in that filesystem. 
+</p>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created September 12, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

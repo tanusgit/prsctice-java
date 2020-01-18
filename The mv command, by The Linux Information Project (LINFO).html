@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20mv%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>The mv command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The mv Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>mv</i> <a href="http://www.linfo.org/command.html">command</a> is used to rename and move files and directories. Its general syntax is:
+</p>
+
+<blockquote>
+<p>
+<code>mv [options] argument(s)</code>
+</p>
+</blockquote>
+
+<p>
+The  <a href="http://www.linfo.org/argument.html"><i>arguments</i></a> 
+are names of files and directories. If two file names are provided as 
+arguments, mv renames the first as the second. If a list of arguments is
+ provided and the final argument in the sequence is the name of an 
+existing directory, mv moves all of the other items into that directory.
+ If the final argument is not an existing directory and more than two 
+arguments are provided, an error message is returned.
+</p>
+
+<p>
+mv's syntax can also be expressed in a less general form as:
+</p>
+
+<blockquote>
+<p>
+<code>mv [options] source target</code>
+</p>
+</blockquote>
+
+<p>
+If the target file is located in the same directory as the source file, 
+then the source file can only be renamed. If both are in different 
+directories, then the source file is moved to the directory named in the
+ <i>target</i> argument, in which it can keep its original name or be 
+assigned a new name. If the target is a directory, then the source file 
+or directory is moved into that directory and retains its original name.
+ 
+</p>
+
+<p>
+Thus, for example, the following would rename a file called <i>file1</i> to <i>file2</i>, while keeping it in the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a> (i.e., the directory in which the user is currently working):
+</p>
+
+<blockquote>
+<p>
+<code>mv file1 file2</code>
+</p>
+</blockquote>
+
+<p>
+The following would move a file named <i>file3</i>, without changing its name, from the current directory to an existing subdirectory of the current directory named <i>dir1</i>:
+</p>
+
+<blockquote>
+<p>
+<code>mv file3 dir1/file3</code>
+</p>
+</blockquote>
+
+<p>
+mv can be used to move any number of files and directories 
+simultaneously. For example, the following command moves all files and 
+directories, including all the contents of those directories, from the 
+current directory to the directory <i>/home/alice/new/</i>:
+</p>
+
+<blockquote>
+<p>
+<code>mv * /home/alice/new/</code>
+</p>
+</blockquote>
+
+<p>
+The asterisk is a <i>wildcard</i> <a href="http://www.linfo.org/linfo.html">character</a> that represents any <a href="http://www.linfo.org/string.html"><i>string</i></a>
+ (i.e., sequence of characters). Thus, in the above example it 
+represents the name of every file and directory in the current 
+directory.
+</p>
+
+<p>
+mv makes it as easy to move a file or directory up the hierarchy of directories (i.e., closer to the <a href="http://www.linfo.org/root_directory.html"><i>root directory</i></a>) as down it. For example, the following would move a file named <i>file4</i>, which is currently located in the sub-subdirectory <i>dir/dir/</i> of the user's <a href="http://www.linfo.org/home_directory.html"><i>home directory</i></a>, to the top level in the user's home directory: 
+</p>
+
+<blockquote>
+<p>
+<code>mv dir/dir/file4 ~</code>
+</p>
+</blockquote>
+
+<p>
+The root directory is the directory that contains all other directories on a <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating system</a>
+ and which is at the top of the hierarchy of directories. A user's home 
+directory is the directory in which a user finds itself by default after
+ <a href="http://www.linfo.org/login_def.html">logging into</a> the system and which can be represented by the <a href="http://www.linfo.org/tilde.html"><i>tilde</i></a> (wavy horizontal line <a href="http://www.linfo.org/character.html">character</a>).
+</p>
+
+<p>
+By default, mv does not provide any confirmation on the display screen 
+if its action is completed without problems. This is consistent with the
+ <a href="http://www.linfo.org/rule_of_silence.html"><i>rule of silence</i></a> tenet of the Unix philosophy. 
+</p>
+
+<p>
+Thus it is wise for users new to Unix-like operating systems to always use the -i <a href="http://www.linfo.org/option.html">option</a>,
+ which makes mv interactive in the situation in which files and/or 
+directories with the same name already exist in the destination 
+directory. For example, the above command would be made interactive as 
+follows:
+</p>
+
+<blockquote>
+<p>
+<code>mv -i * /home/alice/new/</code>
+</p>
+</blockquote>
+<p></p>
+
+<p>
+Among mv's few other options are <i>-b</i>, which tells it to make a backup copy of each file that would otherwise be overwritten or removed, and <i>-v</i>, which tells it to be <i>verbose</i>
+ and display the name of each file before moving it. Detailed 
+information (including all options) about mv can be obtained by using 
+its <i>--help</i> option, and information about the current version can be obtained by using its <i>--version</i> option.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created May 4, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

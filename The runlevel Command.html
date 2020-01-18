@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20runlevel%20Command_files/belug1.css">
+
+<title>The runlevel Command</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The runlevel Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>runlevel</i> command is used to find the current and previous <a href="http://www.linfo.org/runlevel_def.html"><i>runlevels</i></a> on <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. 
+</p>
+
+<p>
+A runlevel is a preset operating state into which a system can be <i>booted</i> (i.e., started up). Each runlevel designates a different system configuration and allows access to a different combination of <a href="http://www.linfo.org/process.html"><i>processes</i></a> (i.e., instances of executing programs).
+</p>
+
+<p>
+Seven runlevels are supported in the standard <a href="http://www.linfo.org/linuxdef.html">Linux</a> <a href="http://www.linfo.org/kernel.html"><i>kernel</i></a>
+ (i.e., core of the operating system), from 0, which halts the system, 
+through 6, which reboots the system. Ordinary users are usually in 
+runlevel 5 most of the time, which runs all typical system services 
+including a <a href="http://www.linfo.org/gui.html">GUI</a> (graphical user interface). Runlevel 3 is similar except for the absence of a GUI; that is, it is <a href="http://www.linfo.org/command_line.html"><i>command line</i></a> (i.e., all-text mode) only. Runlevel 1 is <i>single user mode</i>, which is used for making system repairs. Runlevels 2 and 4 are intended for advanced users to configure as desired. 
+</p>
+
+<p>
+The syntax for the runlevel command is
+</p>
+
+<blockquote>
+<p>
+<code>runlevel [utmp]</code>
+</p>
+</blockquote>
+
+<p>
+runlevel is unusual in that it has no options and is usually used without an <a href="http://www.linfo.org/argument.html"><i>argument</i></a> (i.e., input file), i.e.,  
+</p>
+
+<blockquote>
+<p>
+<code>runlevel</code>
+</p>
+</blockquote>
+
+<p>
+The runlevel <a href="http://www.linfo.org/executable.html"><i>executable</i></a> (i.e., ready-to-run program) resides in the <a href="http://www.linfo.org/sbin.html">/sbin</a> directory, which means that ordinary users will generally either have to first change to that directory using the <i>cd</i> (i.e., <i>change directory</i>) command or provide its <a href="http://www.linfo.org/absolute_pathname.html"><i>absolute path</i></a> (i.e., its full hierarchy of directories from the <a href="http://www.linfo.org/root_directory.html">root directory</a>) by appending /sbin to the beginning of the command, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>/sbin/runlevel</code>
+</p>
+</blockquote>
+
+<p>                                                                                                   
+runlevel reads the <i>utmp</i> (an abbreviation of <i>user's temporary</i>) file and then writes the previous and current runlevels, separated by a single space, to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a> (which is the display screen by default). If there is no previous system runlevel (or if it cannot be determined), the letter <i>N</i> will be returned instead.
+</p>
+
+<p> 
+runlevel assumes that utmp is located in the <i>/var/run/</i> directory.
+ In the event that it is in a different location, its absolute path can 
+be provided as an argument. If no utmp file exists, or if no runlevel 
+record can be found, runlevel returns the word <i>unknown</i> and exits with an error message. 
+</p>
+
+<p>
+Another way to find the current and previous runlevels is to use the <i>who</i> command with its <i>-r</i> option, i.e., 
+</p>
+
+<blockquote>
+<p>
+<code>who -r</code>
+</p>
+</blockquote>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created July 14, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

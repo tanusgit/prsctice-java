@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20du%20command%20--%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the du command -- by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><br><center><h1>The du Command</h1></center><br>
+
+<table width="500" align="center"><tbody><tr><td>
+
+<p>
+The <i>du</i> (i.e., <i>disk usage</i>) <a href="http://www.linfo.org/command.html">command</a> reports the sizes of <a href="http://www.linfo.org/directory_tree.html"><i>directory trees</i></a> inclusive of all of their contents and the sizes of individual <a href="http://www.linfo.org/file.html">files</a>. This makes it useful for tracking down <i>space hogs</i>, i.e., <a href="http://www.linfo.org/directory.html">directories</a> and files that consume large or excessive amounts of space on a <a href="http://www.linfo.org/hdd.html">hard disk drive</a> (HDD) or other <a href="http://www.linfo.org/storage.html">storage</a> media. 
+</p>
+
+<p>
+A directory tree is a hierarchy of directories that consists of a single directory, called the <i>parent directory</i> or <i>top level directory</i>, and all levels of its <i>subdirectories</i>
+ (i.e., directories within a directory). Any directory can be regarded 
+as being the start of its own directory tree, at least if it contains 
+subdirectories. Thus, a typical <a href="http://www.linfo.org/computer.html">computer</a> contains a large number of directory trees. 
+</p>
+
+<p>
+du is commonly employed by system administrators as a supplement to automated monitoring and notification <a href="http://www.linfo.org/program.html">programs</a> that help prevent key directories and <a href="http://www.linfo.org/partition.html"><i>partitions</i></a>
+ (i.e., logically independent sections of a HDD) from becoming full. 
+Full, or even nearly full, directories and partitions can cause a system
+ to slow down, prevent users from <a href="http://www.linfo.org/login_def.html">logging in</a> and even result in a system <a href="http://www.linfo.org/crash.html">crash</a>.
+ Although visually identifying heavy consumers of disk space can be 
+practical if there are relatively few users on a system, it is clearly 
+not efficient for large systems with hundreds or thousands of users.
+</p>
+
+
+<p>
+A minor limitation of du is the fact that the sizes of directories and 
+files it reports are approximations, not exact numbers, and there is 
+frequently a small discrepancy between these sizes and the sizes 
+reported by other commands. However, this rarely detracts from its 
+usefulness.
+</p>
+
+<p>
+Also, du can only be used to estimate space consumption for directories and files for which the user has reading <a href="http://www.linfo.org/permissions.html"><i>permission</i></a>.
+ Thus, an ordinary user would generally not be able to use du to 
+determine space consumption for files or directories belonging to other 
+users, including those belonging to the <a href="http://www.linfo.org/root.html"><i>root account</i></a> (i.e., the system administrator). However, as du is used mainly by system administrators, this is usually not a problem.
+</p>
+
+<p><br><strong>Syntax</strong>
+</p>
+
+<p> 
+The basic syntax for du is:
+</p>
+
+<blockquote>
+<p>
+<code>du [options] [directories and/or files]</code>
+</p>
+</blockquote>
+
+<p>
+The items in the square brackets are optional. When used with no <a href="http://www.linfo.org/option.html">options</a> or <a href="http://www.linfo.org/argument.html"><i>arguments</i></a>
+ (i.e., names of directories or files), du lists the names and space 
+consumption of each of the directories (including all levels of 
+subdirectories) in the directory tree that begins with the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a>
+ (i.e., the directory in which the user is currently working). The space
+ consumption of any directory consists of the space occupied by all of 
+the files in it and all of its subdirectories at all levels inclusive of
+ all of the files in them. A final line at the end of the report gives 
+the total space consumption for the directory tree. 
+</p>
+
+<p>
+du can provide information about any directory trees or files on the 
+system whose names are given as arguments. For example, the following 
+will report the names and sizes for each directory in the directory tree
+ that begins with a directory named <i>directory2</i> that resides in a directory named <i>directory1</i>, which, in turn, is located in the current directory:
+</p>
+
+<blockquote>
+<p>
+<code>du directory1/directory2</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, the following will report the sizes of the two files named <i>file1</i> and <i>file2</i> that are located in the <a href="http://www.linfo.org/sbin.html"><i>/sbin</i></a> directory (which contains <a href="http://www.linfo.org/executable.html">executable</a> programs):
+</p>
+
+<blockquote>
+<p>
+<code>du /sbin/file1 /sbin/file2</code>
+</p>
+</blockquote>
+
+<p>
+du can accept any number of arguments, and they can be any combination 
+of files and directories. When there are multiple arguments, no grand 
+total is provided by default, although a total is still provided for 
+each argument. 
+</p>
+
+
+<p><br><strong>Options</strong>
+</p>
+
+<p>
+As is the case with most commands on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_system.html">operating systems</a>,
+ du has a number of options, a few of which are commonly used. The 
+options can vary somewhat according to the particular operating system 
+and the version of du.
+</p>
+
+<p>
+One of the most useful options is <i>-h</i> (i.e., <i>human readable</i>), which can make the output easier to read by displaying it in kilo<a href="http://www.linfo.org/byte.html">bytes</a> (K), megabytes (M) and <a href="http://www.linfo.org/gigabyte.html">gigabytes</a>
+ (G) rather than just in the default kilobytes. Thus, the following 
+command can be used to show the sizes of all the subdirectories in the 
+current directory as well as the total size of the current directory, 
+all formatted with the appropriate K, M or G:
+</p>
+
+<blockquote>
+<p>
+<code>du -h</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-s</i> (for <i>suppress</i> or <i>summarize</i>) option tells du 
+to report only the total disk space occupied by a directory tree and to 
+suppress individual reports for its subdirectories. Thus, for example, 
+the following would provide the total disk space occupied by the current
+ directory in an easy-to-read format:
+</p>
+
+<blockquote>
+<p>
+<code>du -sh</code>
+</p>
+</blockquote>
+
+<p>
+The output is the same as the last line of a report issued by du with only the -h option.
+</p>
+
+<p>
+The <i>-a</i> (i.e., <i>all</i>) option tells du to report not just the 
+total disk usage for each directory at every level in a directory tree 
+but also to report the space consumption for each individual file 
+anywhere within the tree. Thus, for example, the following would list 
+the name and size of every directory and file in the <i>/etc</i> directory (which contains system configuration files) for which the user has reading permission: 
+</p>
+
+<blockquote>
+<p>
+<code>du -a /etc</code>
+</p>
+</blockquote>
+
+<p>
+A somewhat similar report is provided by using the <i>star</i> ( * ) <a href="http://www.linfo.org/wildcard.html"><i>wildcard</i></a>, which will match any <a href="http://www.linfo.org/character.html">character</a>
+ or characters. For example, the following command would list the sizes 
+of all directories that are in the tree that begins with the current 
+directory: 
+</p>
+
+<blockquote>
+<p>
+<code>du *</code>
+</p>
+</blockquote>
+
+<p>
+However, the only files listed are those in the the parent directory, 
+not those in its subdirectories. Also, no total for the directory tree 
+as a whole is provided.
+</p>
+
+<p>
+The use of the -s option and the star wildcard together would cause du 
+to report the names and sizes of only the files and directories 
+contained directly in the top level directory itself (and to not list 
+the names of any of its subdirectories and the files in them). The size 
+of each listed directory is, of course, inclusive of all of its files 
+and subdirectories (including all of the files in them). For example, 
+such a report about the directory tree beginning with the current 
+directory would be provided by the following:
+</p>
+
+<blockquote>
+<p>
+<code>du -hs *</code>
+</p>
+</blockquote>
+
+<p>
+The wildcard can also be used to filter the output to list only those 
+items whose names begin with, contain or end with certain characters or 
+sequences of characters. For example, the following would report the 
+names and sizes of all of the directories and files in the current 
+directory whose names begin with the letter <i>s</i> as well as the names and sizes of all levels of subdirectories of those directories regardless of what their names begin with:
+</p>
+
+<blockquote>
+<p>
+<code>du -h s*</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-c</i> option can be added to provide a grand total for all of 
+the files and directories that are listed. In the case of the above 
+example, this would be 
+</p>
+
+<blockquote>
+<p>
+<code>du -hc s*</code>
+</p>
+</blockquote>
+
+<p>
+As another example of the use of the wildcard, the following command would report the name and size of each <i>gif</i> (one of the two most popular image formats) file in the current directory as well as a total for all of the gifs:
+</p>
+
+<blockquote>
+<p>
+<code>du -hc *.gif</code>
+</p>
+</blockquote>
+
+<p>
+Another useful option is <i>--max-depth=</i>, which instructs du to list its subdirectories and their sizes to any desired <i>level of depth</i>
+ (i.e., to any level of subdirectories) in a directory tree. For 
+example, the following would cause du to list only the first tier (i.e.,
+ layer) of directories in the current directory and their sizes 
+(inclusive of all of their contents, including those of their 
+subdirectories):
+</p>
+
+<blockquote>
+<p>
+<code>du --max-depth=1</code>
+</p>
+</blockquote>
+
+<p>
+The total space consumption for the current directory tree will also be 
+reported, and it will, of course, be the same regardless of the depth of
+ the files listed.
+</p>
+
+<p>
+Setting --max-depth= to zero tells du to not list any of the 
+subdirectories within the selected directory, i.e., to list only report 
+the size of the selected directory itself. The result is the same as 
+using the -s option. 
+</p>
+
+<p><br><strong>Using du With Filters</strong>
+</p>
+
+<p>
+As is the case with other commands on Unix-like operating systems, du can be linked with <a href="http://www.linfo.org/pipes.html"><i>pipes</i></a> to <a href="http://www.linfo.org/filters.html"><i>filters</i></a> to create powerful <i>pipelines of commands</i>. A filter is a (usually) small and specialized program that transforms data in some meaningful way. 
+</p>
+
+<p>
+For example, to arrange the output items according to size, du can be piped to the <i>sort</i> command, whose <i>-n</i> option tells it to list the output in numeric order with the smallest files first, as follows:
+</p>
+
+<blockquote>
+<p>
+<code>du | sort -n</code>
+</p>
+</blockquote>
+
+<p>
+As du will often generate more output than can fit on the monitor screen
+ at one time, the output will fly by at high speed and be virtually 
+unreadable. Fortunately, it is easy to display the output one screenful 
+at a time by piping it to the <i>less</i> filter, for example,
+</p>
+
+<blockquote>
+<p>
+<code>du -h | less</code>
+</p>
+</blockquote>
+
+<p>
+The output of less can be advanced one screenful at a time by pressing 
+the space bar, and it can be moved backward one screenful at a time by 
+pressing the <i>b</i> key.
+</p>
+
+<p>
+The output of du can likewise be piped to less after it has been passed through one or more other filters, for example,
+</p>
+
+<blockquote>
+<p>
+<code>du -h | sort -n | less</code>
+</p>
+</blockquote>
+
+<p>
+The <a href="http://www.linfo.org/grep.html"><i>grep</i></a> filter can be used to search through du's output for any desired <a href="http://www.linfo.org/string.html"><i>string</i></a>
+ (i.e., sequence of characters). Thus, for example, the following will 
+provide a list of the names and sizes of directories and files in the 
+current directory that contain the word <i>linux</i>:
+</p>
+
+<blockquote>
+<p>
+<code>du -ah | grep linux</code>
+</p>
+</blockquote>
+
+<p>
+One way in which du can be used to produce a list of (mostly) 
+directories and files in a directory tree that are consuming large 
+amounts of disk space is to use grep to search for all the lines that 
+contain the upper case letter <i>M</i> (i.e., for megabytes) or <i>G</i> (for gigabytes), such as
+</p>
+
+<blockquote>
+<p>
+<code>du -ah | grep M</code>
+</p>
+</blockquote>
+
+<p>
+The only problem with this approach is that it will also select 
+directories and files that contain an upper case M or G in their names 
+even if the file size is not measured in megabytes or gigabytes. 
+(However, this problem could be overcome through the use of <i>regular expressions</i>, an advanced pattern matching technique).
+</p>
+
+<p><br><strong>Alternatives to du</strong>
+</p>
+
+<p>
+There are several other ways of monitoring disk space consumption and 
+reporting file sizes. Although very useful tools, they are generally not
+ good substitutes for du.
+</p>
+
+<p>
+Among them is the <a href="http://www.linfo.org/df.html"><i>df</i></a> 
+command, which is likewise used by system administrators to monitor disk
+ usage. However, unlike du, it can only show the space consumption on 
+entire partitions, and it lacks du's fine-grained ability to track the 
+space usage of individual directories and files. 
+</p>
+
+<p>
+du is not designed to show the space consumption of partitions. The 
+closest that it can come is to show the sizes of the first tier of 
+directories in the <a href="http://www.linfo.org/root_directory.html"><i>root directory</i></a> (i.e., the directory which contains all other directories and which is represented by a <a href="http://www.linfo.org/forward_slash.html">forward slash</a>),
+ several of which may be on their own partitions (depending on how the 
+system has been set up). This is accomplished by becoming the root user 
+and issuing the following command:
+</p>
+
+<blockquote>
+<p>
+<code>du -h --max-depth=1 /</code>
+</p>
+</blockquote>
+
+<p>
+The <i>ls</i> (i.e., <i>list</i>) command can provide the sizes of individual files by using its <i>-s</i> option, and its  <i>-h</i>
+ option (which is similar to du's -h option) can be added to make the 
+output easier to read. For example, the following would list the names 
+and sizes of the files in the current directory:
+</p>
+
+<blockquote>
+<p>
+<code>ls -sh</code>
+</p>
+</blockquote>
+
+<p>
+Although the names of the first tier of directories within the current 
+directory are also listed, the size data accompanying them does not 
+represent their actual disk space consumption (i.e., inclusive of their 
+contents). Nor does ls report the contents of any lower tiers of 
+directories, unless such directories are specifically listed as 
+arguments. 
+</p>
+
+<p>
+A convenient alternative for finding the sizes of files and directory trees when using a <a href="http://www.linfo.org/gui.html">GUI</a> (graphical user interface) is to click with the right <a href="http://www.linfo.org/mouse.html">mouse</a> button on the <a href="http://www.linfo.org/icon.html"><i>icon</i></a> (i.e., a small picture or symbol) for that item and then select <i>Properties</i>
+ from the menu that appears. Although this is frequently sufficient, it 
+does not provide the detailed control and reporting that du provides.
+</p>
+
+
+</td></tr></tbody></table>
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+     
+
+<p class="copy">Created August 21, 2004. Last updated April 18, 2007.<br>
+Copyright © 2004 - 2007 The Linux Information Project. All Rights Reserved.</p>
+
+
+
+
+</body></html>

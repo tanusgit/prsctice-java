@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Additional%20Operations%20in%20vi_files/belug1.css">
+
+<title>Additional Operations in vi</title></head>
+
+<body bgcolor="#ffffff">
+
+
+<a href="http://www.bellevuelinux.org/">BELUG</a> &gt;
+<a href="http://www.linfo.org/vi/index.html">vi</a> &gt;
+<a href="http://www.linfo.org/vi/multiple.html">previous</a>
+
+
+<br><center><h1>Additional Operations</h1></center>
+
+
+<table width="100%" border="0"><tbody><tr><td border="0" width="10%"></td><td border="0" width="80%">
+
+
+<p>
+
+A careful study of the preceding material is sufficient for you to be 
+well on your way to becoming proficient at vi. All you really need to do
+ now is continue to practice what you have learned. The following 
+material is presented for those of you who want to learn just a few more
+ useful commands.
+</p>
+
+
+
+<p>As you have learned, creating and opening files in vi can be a very 
+simple matter. However, many combinations of options are available that 
+can add much power and flexibility for these tasks, as can be seen by 
+looking at the full syntax for opening files:</p>
+
+<blockquote>
+<p>
+<code>vi [flags] [cmd] [filename]</code>
+</p>
+</blockquote>
+
+<p>The square brackets ([ ]) around each section of arguments 
+(modifiers) of the command indicates that they are optional. (That is, a
+ file can be opened by just typing <code>vi</code> alone or by typing it with any combination of the three arguments. For instance, the example of <code>vi dog</code> contains only the mandatory <code>vi</code> and the optional third argument, which is the name of the file to open.)
+</p>
+
+
+
+<p>As only one of many possible examples of adding options for opening 
+files, an existing file can be opened with the cursor appearing on any 
+desired line instead of just on the first line. (One situation in which 
+this can be particularly useful is if your file is part of a program 
+which you are writing and the compiler reports an error on a specific 
+line in that file.) This is accomplished by adding the <b>+</b> (plus 
+sign) command followed the desired line number. For example, to open the
+ file "apple" with the cursor located on the third line, type:
+</p>
+
+<blockquote>
+
+<p>
+<code>vi +3 apple</code>
+</p>
+</blockquote>
+
+<p>
+Use of the <b>+</b> command without any modifying number opens a file 
+with the cursor positioned on the last line of text. This can save some 
+keystrokes when you want to open a file just to append data to the end 
+of it. For example:
+</p>
+
+<blockquote>
+
+<p>
+<code>vi + apple</code>
+</p>
+</blockquote>
+
+
+
+<p>You have already learned several commands for switching from  command mode to insert mode, including <b>i</b> for inserting to the left of the cursor position, <b>a</b> for inserting to the right of the cursor position and the <b>c</b> commands for changing text. A more complete list  is as follows:
+</p>
+
+<table cellpadding="5" border="0"><tbody><tr width="100%"><td width="30"></td><td width="30"><b>  a </b></td><td> appends after current cursor position </td></tr>
+
+<tr><td></td><td><b> A </b></td><td> appends at end of current line  </td></tr>
+
+<tr><td></td><td><b> c </b></td><td> starts a change option  </td></tr>
+
+<tr><td></td><td><b> C </b></td><td>  starts a change option from current position to end of current line </td></tr>
+
+<tr><td></td><td><b> i </b></td><td>  inserts to the left of the cursor position </td></tr>
+
+<tr><td></td><td><b> I </b></td><td>  inserts at start of line </td></tr>
+
+<tr><td></td><td><b> o </b></td><td>     cursor moves to new, blank line below its current position 
+
+  </td></tr>
+
+<tr><td></td><td><b> O </b></td><td>  cursor moves to new, blank line above its current position </td></tr>
+
+<tr><td></td><td><b> R </b></td><td>  replaces characters one at a time</td></tr>
+
+
+</tbody></table>
+
+<p></p>
+
+
+A simple way to obtain basic information about any file that is 
+currently open, including name, size and the current line number, is to 
+hold down CTRL and type <code>g</code>. This data appears on the bottom line of the display.
+
+
+<p></p>
+
+
+
+
+
+
+
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+          
+<p class="vilink">Next: <a href="http://www.linfo.org/vi/summary.html">Summary of Commands</a>   
+
+</p><p><br>
+</p>
+
+      
+
+
+<!-- Copyright 2004 Paul Zimmer. All Rights Reserved. -->
+
+</td><td border="0" width="10%"></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

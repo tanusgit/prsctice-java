@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20wildcards,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use wildcards, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>How to Use Wildcards</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+A <i>wildcard</i> is a <a href="http://www.linfo.org/character.html">character</a>
+ that can be used as a substitute for any of a class of characters in a 
+search, thereby greatly increasing the flexibility and efficiency of 
+searches.  
+</p>
+
+<p>
+Wildcards are commonly used in <a href="http://www.linfo.org/shell.html"><i>shell</i></a> <a href="http://www.linfo.org/command.html">commands</a> in <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_system.html">operating systems</a>. A shell is a program that provides a text-only <a href="http://www.linfo.org/user_interface.html">user interface</a> and whose main function is to execute commands typed in by users and display their results.
+</p>
+
+<p>
+Wildcards are also used in <i>regular expressions</i> and programming languages. Regular expressions are a pattern matching system that uses <a href="http://www.linfo.org/string.html"><i>strings</i></a> (i.e., sequences of characters) constructed according to pre-defined syntax rules to find desired strings in text. 
+</p>
+
+<p>
+The term <i>wildcard</i> or <i>wild card</i> was originally used in card
+ games to describe a card that can be assigned any value that its holder
+ desires. However, its usage has spread so that it is now used to 
+describe an unknown or unpredictable factor in a variety of fields.
+</p>
+
+<p>
+<strong>Star Wildcard</strong>
+</p>
+
+<p>
+Three types of wildcards are used with Linux commands. The most frequently employed and usually the most useful is the <i>star wildcard</i>,
+ which is the same as an asterisk (*). The star wildcard has the 
+broadest meaning of any of the wildcards, as it can represent zero 
+characters, all single characters or any string.
+</p>
+
+<p>
+As an example, the <i>file</i> command provides information about any <a href="http://www.linfo.org/filesystem.html">filesystem</a> object (i.e., <a href="http://www.linfo.org/filedef.html">file</a>, directory or link) that is provided to it as an <a href="http://www.linfo.org/argument.html"><i>argument</i></a>
+ (i.e., input). Because the star wildcard represents every string, it 
+can be used as the argument for file to return information about every 
+object in the specified directory. Thus, the following would display 
+information about every object in the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a> (i.e., the directory in which the user is currently working):
+</p>
+
+<blockquote>
+<p>
+<code>file *</code>
+</p>
+</blockquote>
+
+<p>
+If there are no matches, an error message is returned, such as <i>*: can't stat `*' (No such file or directory).</i>. In the case of this example, the only way that there would be no matches is if the directory were empty.
+</p>
+
+<p>
+Wildcards can be combined with other characters to represent parts of 
+strings. For example, to represent any filesystem object that has a <i>.jpg</i> <a href="http://www.linfo.org/filename_extension.html">filename extension</a>, <i>*.jpg</i> would be used. Likewise, <i>a*</i> would represent all objects that begin with a <a href="http://www.linfo.org/lower_case.html"><i>lower case</i></a> (i.e., small) letter <i>a</i>. 
+</p>
+
+<p>
+As another example, the following would tell the <i>ls</i> command (which is used to list files) to provide the names of all files in the current directory that have an <i>.html</i> or a <i>.txt</i> extension:
+</p>
+
+<blockquote>
+<p>
+<code>ls *.html *.txt</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, the following would tell the <a href="http://www.linfo.org/rm.html"><i>rm</i></a> command (which is used to remove files and directories) to delete all files in the current directory that have the string <i>xxx</i> in their name:
+</p>
+
+<blockquote>
+<p>
+<code>rm *xxx*</code>
+</p>
+</blockquote>
+
+<br>
+<p>
+<strong>Question Mark Wildcard</strong>
+</p>
+
+<p>
+The question mark (?) is used as a wildcard character in shell commands 
+to represent exactly one character, which can be any single character. 
+Thus, two question marks in succession would represent any two 
+characters in succession, and three question marks in succession would 
+represent any string consisting of three characters.
+</p>
+
+<p>
+Thus, for example, the following would return data on all objects in the
+ current directory whose names, inclusive of any extensions, are exactly
+ three characters in length:
+</p>
+
+<blockquote>
+<p>
+<code>file ???</code>
+</p>
+</blockquote>
+
+<p>
+And the following would provide data on all objects whose names are one, two or three characters in length:
+</p>
+
+<blockquote>
+<p>
+<code>file ? ?? ???</code>
+</p>
+</blockquote>
+
+<p>
+As is the case with the star wildcard, the question mark wildcard can be
+ used in combination with other characters. For example, the following 
+would provide information about all objects in the current directory 
+that begin with the letter <i>a</i> and are five characters in length:
+</p>
+
+<blockquote>
+<p>
+<code>file a????</code>
+</p>
+</blockquote>
+
+<p>
+The question mark wildcard can also be used in combination with other 
+wildcards when separated by some other character. For example, the 
+following would return a list of all files in the current directory that
+ have a three-character filename extension:
+</p>
+
+<blockquote>
+<p>
+<code>ls *.???</code>
+</p>
+</blockquote>
+
+<br>
+<p>
+<strong>Square Brackets Wildcard</strong>
+</p>
+
+<p> 
+The third type of wildcard in shell commands is a pair of square 
+brackets, which can represent any of the characters enclosed in the 
+brackets. Thus, for example, the following would provide information 
+about all objects in the current directory that have an x, y and/or z in
+ them: 
+</p>
+
+<blockquote>
+<p>
+<code>file *[xyz]*</code>
+</p>
+</blockquote>
+
+<p>
+And the following would list all files that had an extension that begins with x, y or z:
+</p>
+
+<blockquote>
+<p>
+<code>ls *.[xyz]*</code>
+</p>
+</blockquote>
+
+<p>
+The same results can be achieved by merely using the star and question 
+mark wildcards. However, it is clearly more efficient to use the bracket
+ wildcard.
+</p>
+
+<p>
+When a hyphen is used between two characters in the square brackets 
+wildcard, it indicates a range inclusive of those two characters. For 
+example, the following would provide information about all of the 
+objects in the current directory that begin with any letter from <i>a</i> through <i>f</i>:
+</p>
+
+<blockquote>
+<p>
+<code>file [a-f]*</code>
+</p>
+</blockquote>
+
+<p>
+And the following would provide information about every object in the 
+current directory whose name includes at least one numeral:
+</p>
+
+<blockquote>
+<p>
+<code>file *[0-9]*</code>
+</p>
+</blockquote>
+
+<p>
+The use of the square brackets to indicate a range can be combined with 
+its use to indicate a list. Thus, for example, the following would 
+provide information about all filesystem objects whose names begin with 
+any letter from <i>a</i> through <i>c</i> or begin with <i>s</i> or <i>t</i>:
+</p>
+
+<blockquote>
+<p>
+<code>file [a-cst]*</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, multiple sets of ranges can be specified. Thus, for instance, 
+the following would return information about all objects whose names 
+begin with the first three or the final three lower case letters of the <a href="http://www.linfo.org/alphabet.html">alphabet</a>:
+</p>
+
+<blockquote>
+<p>
+<code>file [a-cx-z]*</code>
+</p>
+</blockquote>
+
+<p>
+Sometimes it can be useful to have a succession of square bracket 
+wildcards. For example, the following would display all filenames in the
+ current directory that consist of <i>jones</i> followed by a three-digit number:
+</p>
+
+<blockquote>
+<p>
+<code>ls jones[0-9][0-9][0-9]</code>
+</p>
+</blockquote>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created July 17, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

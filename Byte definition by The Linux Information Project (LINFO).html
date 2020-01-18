@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="Byte%20definition%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>Byte definition by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><br><center><h2>Byte Definition</h2></center><br>
+
+<table width="520" align="center"><tbody><tr><td>
+
+
+
+<p>
+A <i>byte</i> (represented by the upper-case letter <i>B</i>), is a contiguous sequence of a fixed number of <a href="http://www.linfo.org/bit.html"><i>bits</i></a> that is used as a unit of <a href="http://www.linfo.org/memory.html">memory</a>, <a href="http://www.linfo.org/storage.html">storage</a> and instructions execution in <a href="http://www.linfo.org/computer.html">computers</a>. 
+</p>
+
+<p>
+A bit (represented by a <a href="http://www.linfo.org/lower_case.html">lower case</a> <i>b</i>) is the most basic unit of <a href="http://www.linfo.org/information.html">information</a>
+ in computing and communications. Every bit has a value of either zero 
+or one. Although computers usually provide ways to test and manipulate 
+single bits, they are almost always designed to store <a href="http://www.linfo.org/data.html">data</a> and execute instructions in terms of bytes. 
+</p>
+
+<p>
+The number of bits in a byte varied according to the model of computer 
+and its operating system in the early days of computing. For example, 
+the <a href="http://www.linfo.org/pdp_7.html">PDP-7</a>, for which the first version of <a href="http://www.linfo.org/unix_upper.html">UNIX</a> was written, had 18-bit bytes. Today, however, a byte virtually always consists of eight bits. 
+</p>
+
+<p>
+Whereas a bit can have only one of two values, an eight-bit byte (also referred to as an <i>octet</i>)
+ can have any of 256 possible values, because there are 256 possible 
+permutations (i.e., combinations of zero and one) for eight successive 
+bits (i.e., 2<font size="-1"><sup>8</sup></font>). Thus, an eight-bit byte can represent any unsigned integer from zero through 255 or any signed integer from -128 to 127.
+It can also represent any <a href="http://www.linfo.org/character.html"><i>character</i></a> (i.e., letter, number, punctuation mark or symbol) in a seven-bit or eight-bit character encoding system, such as <a href="http://www.linfo.org/ascii.html">ASCII</a> (the default character coding used on most computers). 
+</p>
+
+<p>
+Multiple bytes are used to represent larger numbers and to represent 
+characters from larger character sets. For example, two bytes (i.e., 
+16-bits) can store any one of 65,536 (i.e., 2<font size="-1"><sup>16</sup></font>)
+ possible values, that is, the unsigned integers between 0 and 65,535 or
+ signed numbers from -32,768 to 32,767. Likewise, the range of integer 
+values that can be stored in 32 bits is 0 through 4,294,967,295, or 
+-2,147,483,648 through 2,147,483,647.
+</p>
+
+<p>
+A maximum of 32 bits is required to represent a character encoded in <i>Unicode</i>,
+ which is an attempt to provide a unique encoding (i.e., identification 
+number) for every character currently or historically used by the 
+world's languages. However, the majority of the world's languages only 
+need a single-byte character encoding because they use <a href="http://www.linfo.org/alphabet.html">alphabetic</a> scripts, which generally have fewer than 256 characters.  
+</p>
+
+<p>
+The word <i>byte</i> can also refer to a <i>datatype</i> (i.e., category of data) in certain programming languages and <a href="http://www.linfo.org/database.html">database</a> systems. The <a href="http://www.linfo.org/c.html">C programming language</a>, for example, defines byte to be synonymous with the <i>unsigned char</i> datatype, which is an integer datatype capable of holding at least 256 different values.
+</p>
+
+<p><br>
+<strong>Kilobytes, Megabytes, Gigabytes, Terabytes, Petabytes</strong>
+</p>
+
+<p>
+Because bytes represent a very small amount of data, for convenience 
+they are commonly referred to in multiples, particularly kilobytes 
+(represented by the upper-case letters KB or just K), megabytes 
+(represented by the upper-case letters MB or just M) and <a href="http://www.linfo.org/gigabyte.html">gigabytes</a> (represented by the upper-case letters GB or just G).
+</p>
+
+<p>
+A kilobyte is 1,024 bytes, although it is often used loosely as a 
+synonym for 1,000 bytes. A megabyte is 1,048,576 bytes, but it is 
+frequently used as a synonym for one million bytes. For example, a 
+computer that has a 256MB main memory can store approximately 256 
+million bytes (or characters) in memory at one time. A gigabyte is equal
+ to 1,024 megabytes. 
+</p>
+
+<p>
+One <a href="http://www.linfo.org/terabyte.html"><i>terabyte</i></a> (TB) is equal to 1024 gigabytes or roughly one trillion bytes. One <i>petabyte</i> is equal to a 1024 terabytes or about a million gigabytes. Some supercomputers now have a petabyte <a href="http://www.linfo.org/hdd.html">hard disk drive</a> (HDD) capacity and a multipetabyte tape storage capacity. The prefix <i>peta</i> is an alteration of <i>penta</i>, the Greek word for <i>five</i>.
+</p>
+
+<p>
+An <i>exabyte</i> is 1024 times larger than a petabyte.
+The prefix <i>exa</i> is an alteration of <i>hexa</i>, the Greek word for <i>six</i>.
+ As of 2005, exabytes of data are rarely encountered in a practical 
+context. For example the total amount of printed material in the world 
+is estimated to be around a fifth of an exabyte. However, the total 
+amount of digital data that is now created, captured and replicated 
+worldwide might be several hundred exabytes per year.
+</p>
+
+<p><br>
+<strong>Origins</strong>
+</p>
+
+<p>
+The term <i>byte</i> was coined by Werner Buchholz, a researcher at IBM, in 1956 during the early design phase for the IBM <i>Stretch</i>, the company's first supercomputer. It was a modification of the word <i>bite</i> that was intended to avoid accidentally misspelling it as <i>bit</i>.
+ In 1962 Buchholz described a byte as "a group of bits used to encode a 
+character, or the number of bits transmitted in parallel to and from 
+input-output units."
+</p>
+
+<p>
+Byte is also sometimes considered a contraction of <i>BinarY digiT Eight</i>.
+ IBM used to teach that a Binary Yoked Transfer Element (BYTE) was 
+formed by a series of bits joined together "like so many yoked oxen." <a href="http://www.linfo.org/binary.html"><i>Binary</i></a> refers to the fact that computers perform all their computations with the <i>base 2</i> numbering system (i.e., only zeros and ones), in contrast to the decimal system (i.e., <i>base 10</i>), which is commonly used by humans. 
+</p>
+
+<p>
+The movement toward an eight-bit byte began in late 1956. A major reason
+ that eight was considered the optimal number was that seven bits can 
+define 128 characters (as against only 64 characters for six bits), 
+which is sufficient for the approximately 100 unique codes needed for 
+the upper and lower case letters of the English alphabet as well as 
+punctuation marks and special characters, and the eighth bit could be 
+used as a <i>parity check</i> (i.e., to confirm the accuracy of the other bits). 
+</p>
+
+<p>
+This size was later adopted by IBM's highly popular System/360 series of
+ mainframe computers, which was announced in April 1964, and this was a 
+key factor in its eventually becoming the industry-wide standard. 
+</p>
+
+<p>
+If computers were used for nothing other than binary calculations, as 
+some once were, there would be no need for bytes. However, because they 
+are extensively used to manipulate character-based information, it is 
+necessary to have encodings for those symbols, and thus bytes are 
+necessary. 
+</p>
+
+
+</td></tr></tbody></table>
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+     
+
+<p class="copy">Created May 14, 2005. Updated October 3, 2007.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+
+
+
+</body></html>

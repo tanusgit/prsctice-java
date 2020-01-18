@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="wc%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>wc command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The wc Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>wc</i> (i.e., <i>word count</i>) <a href="http://www.linfo.org/command.html">command</a> by default counts the number of lines, words and <a href="http://www.linfo.org/character.html">characters</a> in text. 
+</p>
+
+<p>
+wc defines a word as a set of contiguous letters, numbers and/or symbols
+ which are separated from other characters by one or more spaces, tabs 
+and/or <i>newline characters</i> (which are generated when the RETURN 
+key is pressed). When counting the number of characters, all characters 
+are counted, not only letters, numbers and symbols, but also spaces, 
+tabs and newline characters. A line is only counted if it ends with a 
+newline character. 
+</p>
+
+<p>
+wc's syntax is
+</p>
+
+<blockquote>
+<p>
+<code>wc [options] [file_name(s)]</code>
+</p>
+</blockquote>
+
+<p>
+The items in square brackets are optional. If no file names are provided, wc reads from its <a href="http://www.linfo.org/standard_input.html"><i>standard input</i></a>, which by default is text entered at the keyboard.  
+</p>
+
+<p>
+This can be seen by typing
+</p>
+
+<blockquote>
+<p>
+<code>wc</code>
+</p>
+</blockquote>
+
+<p>
+at the <a href="http://www.linfo.org/command_line.html"><i>command line</i></a>
+ (i.e., in the all-text mode), pressing the ENTER key to move to a new 
+line and then typing some text on one or more lines. The command is <i>executed</i> (i.e., run) by pressing the ENTER key again and then pressing the CONTROL and <i>d</i>
+ keys simultaneously. This causes wc to write in a new line (under the 
+lines of text) its count of the numbers of lines, words and characters 
+in the text.
+</p>
+
+<p>
+The following command counts the number of lines, words and characters in a file named <i>file1</i> that resides in the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a> (i.e., the directory in which the user is currently working) and likewise writes them, followed by the name of the file, to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a>, which is by default the display monitor:
+</p>
+
+<blockquote>
+<p>
+<code>wc file1</code>
+</p>
+</blockquote>
+
+<p>
+wc can provide its output for multiple files by listing the name of each separated by a space. For example, 
+</p>
+
+<blockquote>
+<p>
+<code>wc file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+The numbers of lines, words and characters for each file along with its 
+name will be displayed on a separate line and in the order that the 
+files are listed as <a href="http://www.linfo.org/argument.html"><i>arguments</i></a>
+ (i.e., input files). In the case of multiple arguments such as this, wc
+ also provides an additional line that shows the total number of lines, 
+words and characters for all the files.
+</p>
+
+<p>
+Likewise, wc can provide a count for all of the text files within a directory. This is accomplished by using the star <i>wildcard</i> character, which represents <i>everything</i>
+ and is designated by an asterisk ( * ). For example, the following will
+ display the number of lines, words and characters for each file in the 
+current directory (which is represented by a dot) as well as totals for 
+all files in the directory: 
+</p>
+
+<blockquote>
+<p>
+<code>wc . *</code>
+</p>
+</blockquote>
+
+<p>
+wc has only a few <a href="http://www.linfo.org/option.html">options</a>, the most commonly used of which restrict the information it provides. The <i>-l</i> option tells wc to count only the number of lines, the <i>-w</i> option tells it to count only the number of words, the <i>-m</i> option tells it to count only the number of characters and the <i>-c</i> option tells wc to count only the number of <a href="http://www.linfo.org/byte.html">bytes</a>. 
+</p>
+
+<p>
+Thus, for example, the following displays just the number of words in a file named <i>file4</i>:
+</p>
+
+<blockquote>
+<p>
+<code>wc -w file4</code>
+</p>
+</blockquote>
+
+<p>
+The following displays the number of characters in the same file:
+</p>
+
+<blockquote>
+<p>
+<code>wc -m file4</code>
+</p>
+</blockquote>
+
+<p>
+As is generally the case with commands in <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>,
+ any combination of options can be used together. For example, the 
+following would count both the numbers of lines and words in a file 
+named <i>file5</i>:
+</p>
+
+<blockquote>
+<p>
+<code>wc -lw file5</code>
+</p>
+</blockquote>
+
+<p>
+<a href="http://www.linfo.org/redirection.html"><i>Redirection</i></a> 
+can be used with wc to create more complex commands. For example, the 
+output from the above command can be redirected using the <i>standard output redirection operator</i> (which is designated by a rightward pointing angle bracket) from the display screen to a file named <i>file6</i> with the following:
+</p>
+
+<blockquote>
+<p>
+<code>wc -lw file5 &gt; file6</code>
+</p>
+</blockquote>
+
+<p>
+If file6 already exists, its contents will be overwritten; if it does 
+not exist, it will be created.  The contents of file6 can be easily 
+confirmed with a <a href="http://www.linfo.org/text_editor.html">text editor</a> or with a command such as <a href="http://www.linfo.org/cat.html"><i>cat</i></a>, which is commonly used to read text files, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>cat file6</code>
+</p>
+</blockquote>
+
+<p>
+As another example, wc with its -l option can be used to count the total number of <i>objects</i> (i.e., files, links and directories) in the current directory. This is accomplished by first employing the <i>ls</i> command, which by default lists the contents of the current directory, and then sending its output via a <a href="http://www.linfo.org/pipe.html"><i>pipe</i></a> (designated by the vertical bar character) to wc, which counts the number of lines in the output from ls, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>ls | wc -l</code>
+</p>
+</blockquote>
+
+<p>
+wc can count the words, lines and/or characters only in text files. However, when used with its <i>-c</i> option, it can count the bytes in any type of file, i.e. a <a href="http://www.linfo.org/plain_text.html">plain text</a> file or a <a href="http://www.linfo.org/binary_file.html"><i>binary file</i></a>. (A binary file is any file that contains at least some non-text data, such as an image file, a <a href="http://www.linfo.org/data_compression.html">compressed</a> text file or an <a href="http://www.linfo.org/executable.html">executable</a> <a href="http://www.linfo.org/program.html">program</a>.) This can be a convenient way of determining the size of a file.
+</p>
+
+<p>
+For example, the following command displays the size for each <i>jpeg</i> image file in the current directory as well as the total for all of them:     
+</p>
+
+<blockquote>
+<p>
+<code>wc -c *.jpg</code>
+</p>
+</blockquote>
+
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created June 2, 2004. Last updated May 24, 2006.<br>
+Copyright © 2004 - 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+
+</body></html>

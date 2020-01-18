@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20cat%20Command_files/belug1.css">
+
+<title>The cat Command</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The cat Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+<p>
+<i>cat</i> is one of the most frequently used <a href="http://www.linfo.org/command.html">commands</a> on <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. It has three related functions with regard to text files: displaying them, combining copies of them and creating new ones. 
+</p>
+
+<p>
+cat's general syntax is
+</p>
+
+<blockquote>
+<p>
+<code>cat [options] [filenames] [-] [filenames]</code>
+</p>
+</blockquote>
+
+<p>
+The square brackets indicate that the enclosed items are optional.
+</p>
+
+
+<p>
+<strong>Reading Files</strong>
+</p>
+
+<p>
+The most common use of cat is to read the contents of files, and cat is 
+often the most convenient program for this purpose. All that is 
+necessary to open a text file for viewing on the display monitor is to 
+type the word <i>cat</i> followed by a space and the name of the file 
+and then press the ENTER key. For example, the following will display 
+the contents of a file named <i>file1</i>:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1</code>
+</p>
+</blockquote>
+
+<p> 
+The <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a> (i.e., default destination of the output) for cat, as is generally the case for other <i>command line</i> (i.e., all-text mode) programs, is the monitor screen. However, it can be <a href="http://www.linfo.org/redirection.html"><i>redirected</i></a>
+ from the screen, for example, to another file to be written to that 
+file or to another command to use as the input for that command.
+</p>
+
+<p>
+In the following example, the standard output of cat is redirected using the <i>output redirection operator</i> (which is represented by a rightward pointing angular bracket) to <i>file2</i>:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 &gt; file2</code>
+</p>
+</blockquote>
+
+<p>
+That is, the output from cat is written to file2 instead of being displayed on the monitor screen.
+</p>
+
+<p>
+The standard output could instead be redirected using a <a href="http://www.linfo.org/pipes.html"><i>pipe</i></a> (represented by a vertical bar) to a <a href="http://www.linfo.org/filters.html"><i>filter</i></a>
+ (i.e., a program that transforms data in some meaningful way) for 
+further processing. For example, if the file is too large for all of the
+ text to fit on the monitor screen simultaneously, as is frequently the 
+case, the text will scroll down the screen at high speed and be very 
+difficult to read. This problem is easily solved by <i>piping</i> the output to the filter <i>less</i>, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 | less</code>
+</p>
+</blockquote>
+
+<p>
+This allows the user to advance the contents of the file one screenful 
+at a time by pressing the space bar and to move backwards by pressing 
+the <i>b</i> key. The user can exit from less by pressing the <i>q</i> key.
+</p>
+
+<p>
+The <i>standard input</i> (i.e., the default source of input data) for 
+cat, as is generally the case for other commands on Unix-like systems, 
+is the keyboard. That is, if no file is specified for it to open, cat 
+will read whatever is typed in on the keyboard.
+</p>
+
+<p>
+Typing the command <i>cat</i> followed by the output redirection 
+operator and a file name on the same line, pressing ENTER to move to the
+ next line, then typing some text and finally pressing ENTER again 
+causes the text to be written to that file. Thus, in the following 
+example the text that is typed on the second line will be written to a 
+file named <i>felines</i>: 
+</p>
+
+<blockquote>
+<p>
+<code>cat &gt; felines</code><br>
+<code>This is not about a feline.</code><br>
+</p>
+</blockquote>
+
+<p>
+The program is terminated and the normal command prompt is restored by pressing the CONTROL and <i>d</i> keys simultaneously. 
+</p>
+
+<p>
+Repeating the above example without using a redirection operator and specifying a destination file, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>cat</code><br>
+<code>This is not about a feline.</code><br>
+</p>
+</blockquote>
+
+<p>
+causes the text to be sent to standard output, i.e., to be repeated on the monitor screen.  
+</p>
+
+<p>
+<strong>Concatenation</strong>
+</p>
+
+<p>
+The second role of cat is <i>concatenation</i> (i.e., stringing 
+together) of copies of the contents of files. (This is the source of 
+cat's curious name.) Because the concatenation occurs only to the 
+copies, there is no effect on the original files. 
+</p>
+
+<p>
+For example, the following command will concatenate copies of the contents of the three files <i>file1</i>, <i>file2</i> and <i>file3</i>:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p> 
+The contents of each file will be displayed on the monitor screen 
+(which, again, is standard output, and thus the destination of the 
+output in the absence of redirection) starting on a new line and in the 
+order that the file names appear in the command. This output could just 
+as easily be redirected using the output redirection operator to another
+ file, such as <i>file4</i>, using the following:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 file2 file3 &gt; file4</code>
+</p>
+</blockquote>
+
+<p>
+In the next example, the output of cat is piped to the <i>sort</i> filter in order to <a href="http://www.linfo.org/alphabet.html">alphabet</a>ize the lines of text after concatenation and prior to writing to file4:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 file2 file3 | sort &gt; file4</code>
+</p>
+</blockquote>
+
+<br>
+
+<p>
+<strong>File Creation</strong>
+</p>
+
+<p>
+The third use for cat is file creation. For small files this is often easier than using <a href="http://www.linfo.org/vi/index.html"><i>vi</i></a>, <i>gedit</i> or other text editors. It is accomplished by typing <i>cat</i>
+ followed by the output redirection operator and the name of the file to
+ be created, then pressing ENTER and finally simultaneously pressing the
+ CONTROL and <i>d</i> keys. For example, a new file named <i>file1</i> can be created by typing
+</p>
+
+<blockquote>
+<p>
+<code>cat &gt; file1</code>
+</p>
+</blockquote>
+
+<p>
+then pressing the ENTER key and finally simultaneously pressing the CONTROL and <i>d</i> keys. 
+</p>
+
+<p>
+If a file named <i>file1</i> already exists, it will be <i>overwritten</i>
+ (i.e., all of its contents will be erased) by the new, empty file with 
+the same name. Thus the cautious user might prefer to instead use the <i>append operator</i> (represented by two successive rightward pointing angular brackets) in order to prevent unintended erasure. That is,  
+</p>
+
+<blockquote>
+<p>
+<code>cat &gt;&gt; file1</code>
+</p>
+</blockquote>
+
+<p>
+That is, if an attempt is made to create a file by using cat and the 
+append operator, and the new file has the same name as an existing file,
+ the existing file is, in fact, preserved rather than overwritten, and 
+any new text is added to the end of the existing file.
+</p>
+
+<p>
+Text can be entered at the time of file creation by typing it in after 
+pressing the ENTER key. Any amount of text can be typed, including text 
+on multiple lines. 
+</p>
+
+<p> 
+cat can also be used to simultaneously create a new file and transfer to
+ it the data from an existing file. This is accomplished by typing <i>cat</i>,
+ the name of the file from which the output will come, the output 
+redirection operator and the name of the file to be created. Then 
+pressing ENTER causes the new file to be created and written to. For 
+example, typing the following and then pressing ENTER creates a new file
+ named <i>file2</i> that contains a copy of the contents of <i>file1</i>:
+</p>
+
+<blockquote>
+<p>
+<code>cat file1 &gt; file2</code>
+</p>
+</blockquote>
+
+<p> 
+There is no effect on the contents of file1. (The same thing can, of course, be accomplished just as easily using <i>cp</i> command, which is used to copy files, i.e., <i>cp file1 file2</i>, but the above example does illustrate the great versatility of cat.)
+</p>
+
+<p> 
+A slight modification to the above procedure makes it possible to create
+ a new file and write text into it from both another file and the 
+keyboard. A hyphen surrounded by spaces is added before the input file 
+if the typed-in text is to come before the text from the input file, and
+ it is added after the input file if the typed-in text is to go after 
+the text from the input file. Thus, for example, to create a new file <i>file6</i> that consists of text typed in from the keyboard followed by the contents of <i>file5</i>, first enter the following:
+</p>
+
+<blockquote>
+<p>
+<code>cat - file5 &gt; file6</code>
+</p>
+</blockquote>
+
+
+<p> 
+Or to create a new file <i>file8</i> that consists of the contents of <i>file7</i> followed by text typed in from the keyboard, first enter the following:
+</p>
+
+<blockquote>
+<p>
+<code>cat file7 - &gt; file8</code>
+</p>
+</blockquote>
+
+<p>
+In either case, then press ENTER to move to a new line and type the 
+desired text on any number of lines. Finally press ENTER once more 
+followed by pressing the CONTROL and <i>d</i> keys simultaneously to <i>execute</i> (i.e., run) the command.
+</p>
+
+<p>
+An example of a practical application for this use of cat is the 
+creation of form letters (or other documents) for which only the top 
+parts (e.g., dates and names) are customized for each recipient.
+</p>
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created June 15, 2004. Updated April 10, 2005.<br>
+Copyright © 2004 - 2005 Bellevue Linux. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

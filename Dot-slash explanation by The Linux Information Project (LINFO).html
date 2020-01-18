@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="Dot-slash%20explanation%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>Dot-slash explanation by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>   
+
+<br><br><center><h2>About the Use of Dot-Slash in Commands</h2></center><br>
+
+<table width="520" align="center"><tbody><tr><td>
+
+<p> 
+The combination of a <a href="http://www.linfo.org/dot.html">dot</a> followed directly by a <a href="http://www.linfo.org/forward_slash.html">forward slash</a> (./) is often used to precede <a href="http://www.linfo.org/command.html">commands</a> in <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_system.html">operating systems</a>.
+ Although this requirement can seem confusing and even tedious to new 
+users, it exists for good reason and can be useful to understand.
+</p>
+
+<p>
+Commands in Unix-like operating systems are either <i>built-ins</i> or <a href="http://www.linfo.org/executable.html"><i>executables</i></a>. The former (e.g., <a href="http://www.linfo.org/alias.html">alias</a>, cd, <a href="http://www.linfo.org/echo.html">echo</a>, <a href="http://www.linfo.org/kill.html">kill</a>, ls and <a href="http://www.linfo.org/pwd.html">pwd</a>) are part of the <a href="http://www.linfo.org/shell.html"><i>shell</i></a>
+ that is currently running, and thus the shell can always locate them. 
+In contrast, the shell needs help in finding the latter, which can be 
+divided into <i>compiled programs</i> and <i>shell scripts</i>. A compiled program is a <a href="http://www.linfo.org/program.html">program</a> whose <a href="http://www.linfo.org/source_code.html">source code</a> (i.e., its original, human-readable form) has been converted through the use of a <a href="http://www.linfo.org/compiler.html">compiler</a> into an <i>executable file</i> (i.e., a ready-to-run form).
+</p>
+
+<p>
+A shell is a program that provides the traditional, text-only <a href="http://www.linfo.org/user_interface.html">user interface</a> for Unix-like operating systems. Its primary function is to read commands that are typed in at the <a href="http://www.linfo.org/command_line.html"><i>command line</i></a> (i.e., in a text-only mode) and then <i>execute</i> (i.e., run) them. A shell script is a short program that is written in a shell programming language and <i>interpreted</i> (i.e., converted into runnable form) by a shell <a href="http://www.linfo.org/process.html">process</a>. 
+</p>
+
+<p>
+When some text is typed into a shell and then the ENTER key is pressed, 
+the shell assumes that it is a command. The shell immediately checks to 
+see if the first <a href="http://www.linfo.org/string.html"><i>string</i></a> (i.e., sequence of characters) in that text is a built-in command or the <a href="http://www.linfo.org/absolute_pathname.html"><i>absolute path</i></a> (i.e., location relative to the <a href="http://www.linfo.org/root_directory">root directory</a>) to an executable. 
+</p>
+
+<p>
+If it is neither of these, the shell will search the <a href="http://www.linfo.org/directory.html">directories</a> listed in that users' <a href="http://www.linfo.org/path_env_var.html">PATH</a> <i>environmental variable</i>
+ for a file with that name. PATH (all upper case letters) tells the 
+shell which directories to search for commands in response to commands 
+issued by the user. 
+</p>
+
+<p>
+If the command is found, it will be executed, assuming that there are no
+ other problems. If it is not found, an error message, such as <i>command not found</i>, will be returned. 
+</p>
+
+<p>
+Most users work most of the time in their <a href="http://www.linfo.org/home_directory.html">home directory</a>
+ and subdirectories thereof because of convenience and for safety 
+reasons. However, by default such directories are not included in the 
+user's PATH variable. Thus when the user creates a script or compiles a 
+program in one of those directories and attempts to run it by merely 
+typing in its name, an error message will be returned.
+</p>
+
+<p>
+However, this problem can be easily overcome by typing a dot and slash 
+in front of the command name. This is merely an abbreviated way to 
+inform the shell that the absolute path of that file is the <a href="http://www.linfo.org/current_directory.html" <i="">current directory</a>
+ (i.e., the directory in which the user is currently working). In 
+Unix-like operating systems, a single dot is used to represent the 
+current directory in a <a href="http://www.linfo.org/path.html"><i>path</i></a> (i.e., the location of a <a href="http://www.linfo.org/file.html">file</a> or directory in the <a href="http://www.linfo.org/filesystem">filesystem</a>), including those used in commands. Likewise, forward slashes are used to separate directories and files in paths. 
+</p>
+
+<p>
+Files in the current directory can be accessed for reading and writing by merely entering the command name (e.g., <a href="http://www.linfo.org/cat.html"><i>cat</i></a> or <a href="http://www.linfo.org/vi/index.html"><i>vi</i></a>)
+ followed by the name of the file. That is, no absolute path is 
+necessary. However, when execution is desired, either an absolute path 
+(or its dot slash equivalent) or the inclusion of the directory 
+containing the command's executable file in the PATH variable is 
+necessary. This is a built-in safety mechanism.
+</p>
+
+<p>
+A user could eliminate the need to precede commands by a dot slash by 
+appending a single dot to the PATH variable, because this would tell the
+ shell to also search the current directory. However, this is generally 
+not advisable on safety and security grounds. For example, were the user
+ to inadvertently create a shell script with the same name as a standard
+ command, the shell could execute the former instead of the latter, 
+thereby causing the system to malfunction, or worse.<font size="-1"><sup>1</sup></font> 
+</p>
+
+<p>
+A better alternative if one wants to eliminate the need to precede 
+commands by a dot slash is to create a special directory for the 
+executable files of such commands, and then add this directory to the 
+PATH variable. For example, a user named <i>bob</i> could create a directory named <i>bin</i> in his home directory (i.e., <i>/home/bob/bin/</i>) for this purpose.
+</p>
+
+<p>
+Another approach for making it easy to run a program that is installed 
+in a non-standard directory is to create a symbolic link to it (using 
+the <i>ln</i> command with its <i>-s</i> <a href="http://www.linfo.org/option.html">option</a>),
+ and then put the link in a directory that is already in the PATH 
+variable. This can be a safer alternative to adding more directories to 
+PATH.
+</p>
+
+<p>
+The dot slash should not be confused with <i>Slashdot</i>, which is the name of a popular <a href="http://www.linfo.org/web.html">web</a> site about <a href="http://www.linfo.org/computer.html">computer</a> technology.
+</p>
+
+
+
+
+<br>
+<p>
+________
+<br>
+
+<font size="-1"><sup>1</sup></font>An extreme example would be the situation in which an ordinary user created a shell script such as <i>rm -r /</i>, which would delete all files and directories in the system for which the user had writing <a href="http://www.linfo.org/permissions.html">permission</a>, and named this script <i>ls</i>.
+ Were the system administrator to navigate to the directory in which 
+this script was located and attempt to run the standard ls command in 
+order to view the contents of that directory, the shell would instead 
+run the script with the same name and thereby remove the contents of all
+ currently <a href="http://www.linfo.org/mounting.html">mounted</a> <a href="http://www.linfo.org/partition.html">partitions</a> on the computer!
+</p>
+
+
+</td></tr></tbody></table>
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created July 1, 2007.<br>
+Copyright © 2007 The Linux Information Project. All Rights Reserved.</p>
+
+
+
+</body></html>

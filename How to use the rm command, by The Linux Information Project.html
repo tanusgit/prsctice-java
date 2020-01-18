@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20rm%20command,%20by%20The%20Linux%20Information%20Project_files/belug1.css">
+
+<title>How to use the rm command, by The Linux Information Project</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+<br><center><h1>The rm Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>rm</i> (i.e., <i>remove</i>) <a href="http://www.linfo.org/command.html">command</a> is used to delete files and directories on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. 
+</p>
+
+<p>
+The general syntax for rm is: 
+</p>
+
+<blockquote>
+<p>
+<code>rm [options] [-r directories] filenames </code>
+</p>
+</blockquote>
+
+<p>
+The items in square brackets are optional. When used just with the names
+ of one or more files, rm deletes all those files without requiring 
+confirmation by the user. Thus, in the following example, rm would 
+immediately delete the files named <i>file1</i>, <i>file2</i> and <i>file3</i>, assuming that all three are located in the <a href="http://www.linfo.org/current_directory.html">current directory</a> (i.e., the directory in which the user is currently working):
+</p>
+
+<blockquote>
+<p>
+<code>rm file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+Error messages are returned if a file does not exist or if the user does
+ not have the appropriate permission to delete it. Write-protected files
+ prompt the user for a confirmation (with a <i>y</i> for <i>yes</i> and an <i>n</i> for <i>no</i>)
+ before removal. Files located in write-protected directories can never 
+be removed, even if those files are not write-protected. 
+</p>
+
+<p>
+The <i>-f</i> (i.e., <i>force</i>) <a href="http://www.linfo.org/option.html">option</a>
+ tells rm to remove all specified files, whether write-protected or not,
+ without prompting the user. It does not display an error message or 
+return error status if a specified file does not exist.  However, if an 
+attempt is made to remove files in a write-protected directory, this 
+option will not suppress an error message.
+</p>
+
+<p>
+The <i>-i</i>  (i.e., <i>interactive</i>) option tells rm to prompt the 
+user for confirmation before removing each file and directory. If both 
+the -f and -i options are specified, the last one specified takes 
+affect.
+</p>
+
+<p>
+As a safety measure, rm does not delete directories by default. In order to delete directories, it is necessary to use the <i>-r</i> option, which is the same as the <i>-R</i> option. This option <i>recursively</i> removes directories and their contents in the <a href="http://www.linfo.org/argument.html">argument</a>
+ list; that is, the specified directories will first be emptied of any 
+subdirectories (including their subdirectories and files, etc.) and 
+files and then removed. The user is normally prompted for removal of any
+ write-protected files in the directories unless the -f option is used. 
+</p>
+
+<p>
+If a file encountered by rm is a symbolic link, the link is removed, but
+ the file or directory to which that link refers will not be affected. A
+ user does not need write permission to delete a symbolic link, as long 
+as the user has write permission for the directory in which that link 
+resides.
+</p>
+
+<p>
+The rm command supports the -- (two consecutive dashes) parameter as a 
+delimiter that indicates the end of the options. This is useful when the
+ name of a file or directory begins with a dash or hyphen. For example, 
+the following removes a directory named <i>-dir1</i>:
+</p>
+
+<blockquote>
+<p>
+<code>rm -r -- -dir1</code>
+</p>
+</blockquote>
+
+<p>
+Other options include <i>-v</i> (i.e., <i>verbose</i>), which provides additional information about what is happening, <i>--help</i>, which provides basic documentation about rm, and <i>--version</i>,
+ which tells the version of rm that is currently in use. Some 
+differences exist among the various versions of rm, so it is always wise
+ to read the documentation for the particular system. 
+</p>
+
+<p>
+The <i>rmdir</i> command differs from rm in that it is only used to remove empty directories. 
+</p>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created January 11, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

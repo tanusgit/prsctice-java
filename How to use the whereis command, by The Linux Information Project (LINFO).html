@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20whereis%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the whereis command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The whereis Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>whereis</i> <a href="http://www.linfo.org/command.html">command</a> is used to locate the <a href="http://www.linfo.org/binary.html"><i>binary</i></a>, the <a href="http://www.linfo.org/source_code.html"><i>source code</i></a> and the <i>online manual page</i> for any specified <a href="http://www.linfo.org/program.html">program</a>.
+</p>
+
+<p>
+A binary is an <a href="http://www.linfo.org/executable.html"><i>executable</i></a>
+ (i.e., ready to run) form of a program. Source code is the original 
+form of a program as written by a human using a programming language and
+ before it has been converted by a <a href="http://www.linfo.org/compiler.html">compiler</a> into a binary. The online manual pages, commonly referred to as <i>man pages</i>, are normally accessed using the <a href="http://www.linfo.org/man.html"><i>man</i></a> command.
+</p>
+
+<p>
+whereis's basic syntax is
+</p>
+
+<blockquote>
+<p>
+<code>whereis [option(s)] program_name(s) </code>
+</p>
+</blockquote>
+
+<p>
+When used without any <a href="http://www.linfo.org/option.html">options</a>, which is most commonly the case, whereis attempts to supply the <a href="http://www.linfo.org/absolute_pathname.html"><i>absolute path names</i></a> (i.e., the path to the <a href="http://www.linfo.org/root_directory.html">root directory</a>)
+ for the binary, source code and man page for every program name 
+(including command names, which are generally the same as program names)
+ that is supplied to it as an <a href="http://www.linfo.org/argument.html"><i>argument</i></a> (i.e., input). Any number of names can be accepted as arguments, and the results for each will be returned on a separate line. 
+</p>
+
+<p>
+Thus, for example, the following would be used to <i>attempt</i> to find the locations of the executable, source code and man page for the <i>ls</i> command (which is used to list the contents of any specified directory):
+</p>
+
+<blockquote>
+<p>
+<code>whereis ls</code>
+</p>
+</blockquote>
+
+<p>
+Although whereis ideally returns three pieces of information for each 
+argument, in reality it often returns fewer and sometimes returns more. 
+For example, it will not return a location for source code for a program
+ on a computer for which the source code has not been installed (which 
+is common when programs are installed in precompiled form during 
+installation of the <a href="http://www.linfo.org/operating_system.html">operating system</a>). Likewise, there may be no man pages for some commands, or there may be more than one.
+</p>
+
+<p>
+For some commands it might be the case that no executable is returned. Examples include <a href="http://www.linfo.org/alias.html"><i>alias</i></a> and <i>umask</i>. This is presumably because no separate executables with these names exist and such commands are built directly into the <a href="http://www.linfo.org/shell.html"><i>shell</i></a> (i.e., the program that executes commands typed in by a user and displays their results).
+</p>
+
+<p>
+If an executable, source code or man page <a href="http://www.linfo.org/filedef.html">file</a>
+ exists on a computer but has not installed in a standard location, no 
+result will be returned for it. This is because whereis only searches in
+ such locations. An example is the situation in which a user has 
+installed a program in its <a href="http://www.linfo.org/home_directory.html"><i>home directory</i></a>
+ (i.e., the directory which contains configuration files, programs and 
+data specific to that user) rather than in directories that are 
+accessible to all users.
+</p>
+
+<p>
+In the event that nothing is found for one or more of the three types of
+ information for which whereis searches for each argument, no error 
+message or other notification is provided. If multiple results are 
+found, whereis returns all of them.
+</p>
+
+<p>
+In some situations, whereis might return only a single entry for some commands. This is true in the case of the <a href="http://www.linfo.org/spell.html"><i>spell</i></a>
+ command (which, as its name implies, is used to check the spelling of 
+text files), at least on some systems, as can be seen by running the 
+following:
+</p>
+
+<blockquote>
+<p>
+<code>whereis spell</code>
+</p>
+</blockquote>
+
+<p>      
+Several options are available to limit the type of results returned by whereis (as is the case with the <a href="http://www.linfo.org/wc.html"><i>wc</i></a> command, which by default counts the number of lines, words and <a href="http://www.linfo.org/character.html">characters</a> that are contained in text). The <i>-b</i> option tells it to search only for binaries. The <i>-m</i> option tells it to search only for man pages. The <i>-s</i>
+ option tells it to search only for sources. Thus, for example, the 
+following could be used to search for only the binaries and source code 
+for the <a href="http://www.linfo.org/whoami.html"><i>whoami</i></a> command (which reports the owner of the current <a href="http://www.linfo.org/login_def.html">login</a> session):
+</p>
+
+<blockquote>
+<p>
+<code>whereis -b whoami</code>
+</p>
+</blockquote>
+
+<p>      
+As is generally (but not always) the case with single-letter options for
+ shell programs, these options can be used together in any combination 
+and any order. The order in which the results are displayed is not 
+affected by the order in which the options are used.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created July 28, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

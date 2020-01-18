@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="mkbootdisk%20creates%20emergency%20boot%20floppies_files/belug1.css">
+
+<title>mkbootdisk creates emergency boot floppies</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The mkbootdisk Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>mkbootdisk</i> command is used to create an emergency boot floppy. Such a disk can often be used to start a <a href="http://www.linfo.org/linuxdef.html">Linux</a> system that will not start in the ordinary way, typically because of damage to the LILO or GRUB startup file.  
+</p>
+
+<p>
+The general syntax for mkbootdisk is 
+</p>
+
+<blockquote>
+<p>
+<code>mkbootdisk [options] kernel</code>
+</p>
+</blockquote>
+
+<p>
+No options are required, and all that is necessary is to supply the name of a <a href="http://www.linfo.org/kernel.html"><i>kernel</i></a> (i.e., the core of the <a href="http://www.linfo.org/operating_systems_list.html">operating system</a>) currently on the system. 
+</p>
+
+<p>
+Assuming that the floppy disk is inserted in the first floppy disk drive
+ and that the kernel is version 2.4.20-6, the following command would be
+ used:
+</p>
+
+<blockquote>
+<p>
+<code> /sbin/mkbootdisk 2.4.20-6</code>
+</p>
+</blockquote>
+
+<p>
+The mkbootdisk <i>executable</i> (i.e., runnable <a href="http://www.linfo.org/program.html">program</a>) is by default located in the <i>/sbin</i>
+ directory. If this directory is not in the PATH variable (i.e., the 
+list of directories in which the system searches for a command 
+executable), then it is necessary to either add <i>/sbin</i> to the beginning of the command (as shown above) or to first change to the /sbin directory with the <i>cd</i> command, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code> cd /sbin</code>
+</p>
+</blockquote>
+
+<p>
+The floppy <i>device file</i> is by default <i>/dev/fd0</i> (i.e., the first floppy drive). However, another floppy device can be specified with the <i>--device</i>
+ option for those rare situations in which a machine has more than a 
+single floppy drive. mkbootdisk instructs the user to insert a floppy 
+disk, even if one is already in the floppy drive, and waits for 
+confirmation before continuing unless the <i>--noprompt</i> option is specified. 
+</p>
+
+<p>
+The floppy disk cannot be <i>mounted</i> (i.e., logically attached to the <a href="http://www.linfo.org/filesystem.html">filesystem</a>)
+ when mkbootdisk is used. If it has been mounted for some reason (some 
+systems are set up to mount floppies automatically), it can easily be 
+unmounted with the <i>umount</i> command, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>umount /dev/fd0</code>
+</p>
+</blockquote>
+
+<p>
+The <i>--size</i> option is followed by the size (in kilo<a href="http://www.linfo.org/byte.html">bytes</a>) of the <i>image</i> (i.e., exact copy) to use for the boot disk. If this option is not used, mkbootdisk will assume a standard 1.44MB floppy disk.
+</p>
+
+<p>
+The <i>--iso</i> option instructs mkbootdisk to make a <i>bootable</i> 
+ISO image on the hard disk that can later be used with a CD writer to 
+create a bootable CDROM. Bootable means that it is capable of loading 
+the operating system into <a href="http://www.linfo.org/memory.html">memory</a> so that the computer becomes usable and application programs can be run. 
+</p>
+
+<p>
+By default mkbootdisk writes no output on the display screen. This can be changed with the <i>--verbose</i>
+ option, which instructs it to provide information about what it is 
+doing, although the amount of information is small because of the simple
+ functioning of mkbootdisk.  
+</p>
+
+<p>
+The <i>--version</i> option displays the version of mkbootdisk and exits. In contrast to many <i>command line programs</i> (i.e., all-text mode programs), there is no <i>--help</i> option for mkbootdisk. 
+</p>
+
+<p>
+The boot floppy created by mkbootdisk contains five files:  <i>boot.msg</i>, <i>initrd.img</i>, <i>ldlinux.sys</i>, <i>syslinux.cfg</i> and <a href="http://www.linfo.org/vmlinuz.html"><i>vmlinuz</i></a>. vmlinuz is the compressed Linux kernel executable, and it is bootable. 
+</p>
+
+<p>
+A new boot floppy should always be tested immediately after making it by using it to reboot (i.e., restart) the computer. 
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created June 23, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

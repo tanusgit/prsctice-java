@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="ping%20%20determines%20whether%20a%20network%20destination%20is%20reachable_files/belug1.css">
+
+<title>ping: determines whether a network destination is reachable</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The ping Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+<i>ping</i> is one of the most basic, but also one of the most useful, tools for obtaining information about computer <a href="http://www.linfo.org/network.html">networks</a>, including the Internet. 
+</p>
+
+<p>
+A main use of ping is to determine whether a specific <i>IP address</i> 
+is accessible. An IP address is a unique numeric identifier for a 
+computer or other device on the Internet or other TCP/IP (transmission 
+control protocol/Internet protocol) network. In IPv4, the current 
+standard protocol for the Internet, IP addresses consist of 32 bits, and
+ they are expressed as four sets of numbers, each from 0 to 255, which 
+are separated by periods. 
+</p>
+
+<p>
+ping can also report the length of time and the number of <i>hops</i> (i.e., passage between any two routers or other network devices) that a <a href="http://www.linfo.org/packet.html"><i>packet</i></a>
+ (i.e.,the most basic unit of data sent over the Internet) takes to make
+ a complete round trip. Additionally, it can be used to test <i>name resolution</i>
+ (i.e., conversion between IP addresses and URLs): if the packet bounces
+ back when sent to the IP address but not when sent to that address's 
+name, then the system is having a problem matching the name to the IP 
+address. Moreover, ping can also provide data about packet duplication 
+and packet loss. 
+</p>
+
+<p>
+ping works by sending ICMP (Internet control message protocol) packets to the target IP address and <i>listening</i>
+ for returned packets. It is analogous to active sonar in submarines, in
+ which an operator issues a pulse of energy at an unseen target; if the 
+pulse hits the target, it is bounced back to the operator.
+</p>
+
+<p>
+The syntax for ping is 
+</p>
+
+<blockquote>
+<p>
+<code>ping [options] destination</code>
+</p>
+</blockquote>
+
+<p>
+ping is most typically used without any of its <a href="http://www.linfo.org/option.html">options</a>. The destination can be expressed in terms of the numerical IP address or a URL. In the case of a <a href="http://www.linfo.org/lan.html">LAN</a> (local area network), it can also be an alias for a computer or other network device.
+</p>
+
+<p></p>
+ping sends one package per second by default, and it provides one line 
+of output for every response received. Its output generally consists of 
+the packet size, the host queried, the ICMP sequence number, the <i>time to live</i>,
+ the round-trip time and packet loss. All times are given in 
+milliseconds, and times below ten milliseconds often have a low 
+accuracy. 
+<p></p>
+
+<p>
+To ping the same computer from which the ping command is being issued, either of the following can be used:
+</p>
+
+<blockquote>
+<p>
+<code>ping 127.0.0.1</code>
+</p>
+<p>
+<code>ping localhost</code>
+</p>
+</blockquote>
+
+<p>
+The former uses the <i>loopback</i> address, which is the default IP address of any computer when referring to itself. <i>localhost</i> is the default name associated with the loopback address.  
+</p>
+
+<p>
+The <i>ttl</i> (time to live) value represents the maximum number of 
+routers that the packet can go through before being discarded. Each 
+router through which a packet passes decrements the ttl field by exactly
+ one. The default value of ttl will depend on the specific <a href="http://www.linfo.org/operating_systems_list.html">operating system</a>.
+</p>
+
+<p>
+The <i>-c</i> option tells ping to send out only the number of packets 
+as specified by the integer(s) that follow it. For example, to send out 
+only five packets to the IP address 66.94.234.13, the following would be
+ used:
+</p>
+
+<blockquote>
+<p>
+<code>ping -c 5 66.94.234.13</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-i</i> option tells ping what interval (in seconds) to wait between sending each packet. The default is one second. Only the <a href="http://www.linfo.org/root.html">root</a> (i.e., administrative) user is permitted set the interval to values of less than 0.2 seconds.
+</p>
+
+<p>
+The <i>-s</i> option specifies the number of <a href="http://www.linfo.org/byte.html">bytes</a>
+ of data to be sent. The default is 56, which results in a packet size 
+of 64 bytes because of the mandatory eight bytes of ICMP header data.
+</p>
+
+<p>
+The <i>-w</i> option specifies a timeout, in seconds, before ping exits regardless of how many packets have been sent or received. The <i>-q</i> (i.e., <i>quiet</i>) option tells ping to not display anything except the summary lines at startup time and when finished.
+</p>
+
+<p>
+Because of the load ping can impose on a network, it is unwise to use it
+ on the Internet during normal operations or from automated scripts. 
+However, this caution is not always heeded, and it can result in harm to
+ the system. Thus, some websites and ISPs (Internet service providers) 
+block ping messages, thereby reducing its usefulness. However, ping 
+remains a valuable tool, and it is particularly useful for setting up 
+LANs and other private networks. 
+</p>
+
+<p>
+ping was created in a single day by Mike Muuss of the Army Research 
+Laboratory in December 1983 in response to network difficulties he 
+encountered. It is often believed that <i>ping</i> is an <a href="http://www.linfo.org/acronym_list.html">acronym</a> for <i>packet Internet groper</i>, but its author stated that the name comes from the sound made by sonar. 
+</p>
+
+<p>
+Although ping was originally developed for use on <a href="http://www.linfo.org/unix-like.html">Unix-like</a> operating systems, versions of it are now available for most other operating systems as well.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created September 21, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

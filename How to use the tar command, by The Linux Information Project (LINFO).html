@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20tar%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the tar command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The tar Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>tar</i> (i.e., <i>tape archive</i>) <a href="http://www.linfo.org/command.html">command</a> is used to convert a group of <a href="http://www.linfo.org/filedef.html">files</a> into an <a href="http://www.linfo.org/archive.html"><i>archive</i></a>. 
+</p>
+
+<p>
+An archive is a single file that contains any number of individual files
+ plus information to allow them to be restored to their original form by
+ one or more <i>extraction</i> <a href="http://www.linfo.org/program.html">programs</a>. Archives are convenient for storing files as well as for for transmitting <a href="http://www.linfo.org/data.html">data</a>
+ and distributing programs. Moreover, they are very easy to work with, 
+often much more so than dealing with large numbers of individual files. 
+</p>
+
+<p>
+Although tar was originally designed for backups on magnetic tape, it can now be used to create archive files anywhere on a <a href="http://www.linfo.org/filesystem.html">filesystem</a>. Archives that have been created with tar are commonly referred to as <a href="http://www.linfo.org/tarball.html"><i>tarballs</i></a>.
+</p>
+
+<p>
+Unlike some other archiving programs, and consistent with the Unix 
+philosophy that each individual program should be designed to do only 
+one thing but do it well, tar does not perform <a href="http://www.linfo.org/data_compression.html">compression</a>. However, it is very easy to compress archives created with tar by using specialized compression utilities.
+</p>
+
+<p>
+tar's basic syntax is
+</p>
+
+<blockquote>
+<p>
+<code>tar option(s) archive_name file_name(s)</code>
+</p>
+</blockquote>
+
+<p>
+tar has numerous options, many of which are not frequently used. Unlike many commands, tar requires the use of at least one <a href="http://www.linfo.org/option.html">option</a>, and usually two or more are necessary.
+</p>
+
+<p>
+tar files are created by using both the <i>-c</i> and <i>-f</i> options. The former instructs tar to create an archive and the latter indicates that the next <a href="http://www.linfo.org/argument.html"><i>argument</i></a>
+ (i.e., piece of input data in a command) will be the name of the new 
+archive file. Thus, for example, the following would create an archive 
+file called <i>file.tar</i> from the three files named <i>file1</i>, <i>file2</i> and <i>file3</i> that are located in the <a href="http://www.linfo.org/current_directory.html">current directory</a> (i.e., the directory in which the user is currently working):
+</p>
+
+<blockquote>
+<p>
+<code>tar -cf file.tar file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+It it not absolutely necessary that the new file have the <i>.tar</i> <a href="http://www.linfo.org/filename_extension.html">extension</a>;
+ however, the use of this extension can be is very convenient because it
+ allows the type of file to be visually identified. It is necessary, 
+however, that the -f option be the final option in a sequence of 
+contiguous, single-letter options; otherwise, the system will become 
+confused as to the desired name for the new file and will use the next 
+option in the sequence as the name.
+</p>
+
+<p>
+The <i>-v</i> (i.e., <i>verbose</i>) option is commonly used together 
+with the -c and -f options in order to display a list of the files that 
+are included in the archive. In such case, the above example would 
+become
+</p>
+
+<blockquote>
+<p>
+<code>tar -cvf file.tar file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+tar can also be used to make archives from the contents of one or more directories. The result is <i>recursive</i>; that is, it includes all <i>objects</i> (e.g., directories and files) within each level of directories. For example, the contents of two directories named <i>dir1</i> and <i>dir2</i> could be archived into a file named <i>dir.tar</i> with the following:
+</p>
+
+<blockquote>
+<p>
+<code>tar -cvf dir.tar dir1 dir2</code>
+</p>
+</blockquote>
+
+<p>
+It is often convenient to use tar with a <a href="http://www.linfo.org/wildcard.html"><i>wildcard</i></a> (i.e., a <a href="http://www.linfo.org/character.html">character</a> which can represent some specific class of characters or sequence of characters). The following example uses the <i>star wildcard</i> (i.e., an asterisk), which represents <i>any</i> character or sequence of characters, to create an archive of every object in the current directory:
+</p>
+
+<blockquote>
+<p>
+<code>tar -cf *</code>
+</p>
+</blockquote>
+
+<p>
+By default, tar creates an archive of copies of the original files 
+and/or directories, and the originals are retained. However, they can be
+ removed when using tar by adding the <i>--remove-files</i> option. 
+</p>
+
+<p>
+As it has no compression and decompression capabilities of its own, tar 
+is commonly used in combination with an external compression utility. A 
+very handy feature of the <a href="http://www.linfo.org/gnu.html">GNU</a> version (which is standard on <a href="http://www.linfo.org/linuxdef.html">Linux</a>)
+ is the availability of options that will cause standard compression 
+programs to compress a new archive file as soon as it has been created. 
+They are <i>-j</i> (for <a href="http://www.linfo.org/bzip2.html"><i>bzip2</i></a>), <i>-z</i> (for <i>gzip</i>) and <i>-Z</i> (for <i>compress</i>). Thus, for example, the following would create an archive named <i>files.tar.bz2</i> of the files <i>file4</i>, <i>file5</i> and <i>file6</i> that is compressed using bzip2:
+</p>
+
+<blockquote>
+<p>
+<code>tar -cvjf files.tar.bz2 file4 file5 file6</code>
+</p>
+</blockquote>
+
+<p>
+tar can also be used for unpacking tar files. However, before doing 
+this, there are several steps that should be taken. One is to confirm 
+that sufficient space is available on the <a href="http://www.linfo.org/hdd.html">hard disk drive</a>
+ (HDD). Another is to move to an empty directory (which usually involves
+ creating one with an appropriate name) to prevent the reconstituted 
+files from cluttering up the current directory and overwriting any files
+ or directories with same names that are in it. In addition, if the 
+archive has been compressed, it must first be decompressed using the 
+appropriate decompression program (which can usually be determined by 
+the filename extension).
+</p>
+
+<p>
+In order to unpack a tar file, the <i>-x</i> (for <i>extract</i>) and -f
+ options are required. It is also common to add the -v option to provide
+ a running listing of the files being unpacked. Thus, for example, to 
+unpack the archive file.tar created in a previous example the following 
+would be used:
+</p>
+
+<blockquote>
+<p>
+<code>tar -xvf file.tar </code>
+</p>
+</blockquote>
+
+<p>
+Just as options are available to allow three compression programs to 
+automatically compress newly created tar files, the same options can be 
+used to have the compression programs automatically decompress tar files
+ prior to extraction. Thus, for instance, the following would decompress
+ and extract the contents of the compressed archive files.tar.bz2 that 
+was created in an above example: 
+</p>
+
+<blockquote>
+<p>
+<code>tar -xjvf files.tar.bz2 </code>
+</p>
+</blockquote>
+
+<p>
+Files can be added to an existing archive using the <i>-r</i> option. As is always the case with tar, it is also necessary to use the -f option to indicate that the following <a href="http://www.linfo.org/string.html"><i>string</i></a> (i.e., sequence of characters) is the name of the archive. For example, the following would append a file named <i>file7</i> to file.tar:
+</p>
+
+<blockquote>
+<p>
+<code>tar -rf file.tar file7</code>
+</p>
+</blockquote>
+
+<p>
+The <i>--delete</i> option allows specified files to be completely 
+removed from a tar file (except when the tar file is on magnetic tape). 
+However, this is different from an extraction, as copies of the removed 
+files are not made and placed in the current directory. Thus, for 
+example, the files file1 and file2 can be removed from file.tar with the
+ following:
+</p>
+
+<blockquote>
+<p>
+<code>tar -f file.tar --delete file1 file2</code>
+</p>
+</blockquote>
+
+<p>
+The <i>-t</i> option tells tar to list the contents of an uncompressed 
+archive without performing an extraction. Thus, the following would list
+ the contents of file.tar:
+</p>
+
+<blockquote>
+<p>
+<code>tar -tf file.tar</code>
+</p>
+</blockquote>
+
+<p>
+One of the very few options that can be used alone with tar is <i>--help</i>, which provides a relatively compact listing of the numerous options that are available. Another is <i>--version</i>, which shows the version number for the installed tar program as well as its copyright information.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+     
+
+<p class="copy">Created July 15, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td></td></tr></tbody></table>
+
+
+</body></html>

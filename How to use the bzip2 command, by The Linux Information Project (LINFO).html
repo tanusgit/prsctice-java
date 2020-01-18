@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20bzip2%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the bzip2 command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The bzip2 Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>bzip2</i> <a href="http://www.linfo.org/command.html">command</a> is used for compressing and decompressing files. 
+</p>
+
+<p>
+<a href="http://www.linfo.org/data_compression.html"><i>Data compression</i></a>, also referred to as just <i>compression</i>, is the process of encoding <a href="http://www.linfo.org/data.html">data</a> using fewer <a href="http://www.linfo.org/bit.html"><i>bits</i></a>. <i>Data decompression</i>, or just <i>decompression</i>, is the process of restoring compressed data back into a form in which it is again useful.
+</p>
+
+<p>
+bzip2 features a high rate of compression together with reasonably fast 
+speed. Most files can be compressed to a smaller file size than is 
+possible with the more traditional <i>gzip</i> and <i>zip</i> programs. Moreover, like those programs, the compression is <i>lossless</i>,
+ meaning that no data is lost during compression and thus the original 
+files can be exactly regenerated. The only disadvantage of bzip2 is that
+ it is somewhat slower than gzip and zip. 
+</p>
+
+<p>
+This performance has been made possible through the use of the <i>Burrows-Wheeler transform</i> (BWT). First published by Michael Burrows and David Wheeler in 1994, BWT is not by itself a data compression <a href="http://www.linfo.org/algorithm.html">algorithm</a>; rather, it converts blocks of data into a format that is extremely well suited for compression. In addition, it is <i>reversible</i>, which means that the original data can be easily regenerated. 
+</p>
+
+<p>
+bzip2's syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>bzip2 [option(s)] file_name(s)</code>
+</p>
+</blockquote>
+
+<p>
+bzip2 is commonly used without any <a href="http://www.linfo.org/option.html">options</a>. Any number of files can be compressed simultaneously by merely listing their names as <a href="http://www.linfo.org/argument.html">arguments</a> (i.e., inputs). Thus, for example, the following would compress the three files named <i>file1</i>, <i>file2</i> and <i>file3</i>:
+</p>
+
+<blockquote>
+<p>
+<code>bzip2 file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+If no problems are encountered, by default no confirmation is provided. 
+However, if some problem is encountered, an error message is returned 
+for each file for which there is a problem. Should confirmation and data
+ on the degree of compression be desired, then bzip2 can be used with 
+its <i>-v</i> (i.e., <i>verbose</i>) option, such as 
+</p>
+
+<blockquote>
+<p>
+<code>bzip2 -v file1 file2 file3</code>
+</p>
+</blockquote>
+
+
+<p>
+Each file is replaced by a compressed version of itself, with the <a href="http://www.linfo.org/filename_extension.html">extension</a> <i>.bz2</i> appended to its name. Thus, in the case of the above example, the three input files would be replaced by files named <i>file1.bz2</i>, <i>file2.bz2</i> and <i>file3.bz2</i>. This can be easily confirmed with the <i>ls</i> (i.e., <i>list</i>) command, and the sizes of the new files can be viewed by using ls together with its <i>-s</i> (i.e., <i>size</i>) option. The original files can be retained by using the <i>-k</i> (i.e., <i>keep</i>) option. 
+</p>
+
+<p>
+Each compressed file retains to the extent possible the same <a href="http://www.linfo.org/metadata.html">metadata</a> (i.e., modification date, <a href="http://www.linfo.org/permissions.html">access permissions</a> and ownership) as the corresponding original file, so that this data can be correctly restored at decompression time. 
+</p>
+
+<p>
+Compression is performed even if the compressed file is larger than the 
+original. This situation can occur in the case of very small files, 
+because the compression mechanism has a fixed overhead of about 50 <a href="http://www.linfo.org/byte.html">bytes</a>. 
+</p>
+
+<p>
+The <i>-s</i> (i.e., <i>small</i>) option reduces <a href="http://www.linfo.org/memory.html">memory</a> usage for compression, decompression and testing, which is useful for <a href="http://www.linfo.org/computer.html">computers</a>
+ with very small memories (e.g., 8MB or less). Files are decompressed 
+and tested using a modified algorithm that only requires 2.5 bytes per 
+block, although this results in a reduction in speed by about half. 
+</p>
+
+<p>
+The <i>-t</i> (i.e., <i>test</i>) option tells bzip2 to check the 
+integrity of the specified file(s) by performing a trial decompression 
+and discarding the result. There is no effect on the specified files.
+</p>
+
+<p>
+As a safety measure, by default bzip2 will not overwrite existing files 
+with the same names (inclusive of extensions) as its output files or 
+break <i>hard links</i> (i.e., alternative names for a single file). However, the <i>-f</i> option <i>forces</i> the overwriting of existing files and also instructs bzip2 to break hard links to files.
+</p>
+
+<p>
+The <i>-d</i> option tells bzip2 to <i>decompress</i> the specified files. It is the same as the <i>bunzip2</i>
+ command. Files that were not created by bzip2 will be detected and 
+ignored, and a warning will be issued. An attempt is made to guess the 
+original name for each file being decompressed; however, if the 
+compressed version does not end in one of the recognized extensions 
+(i.e., .bz2, .bz, .tbz2 or .tbz), then bzip2 will complain that it 
+cannot guess the name of the original file and will use the name of the 
+compressed version with the <i>.out</i> extension appended to it.
+</p>
+
+<p>
+It is often convenient to store a number of files in a compressed <a href="http://www.linfo.org/archive.html"><i>archive</i></a>,
+ which is a single file that contains any number of individual files 
+plus information to allow them to be restored to their original form by 
+one or more extraction programs. This can be accomplished by first 
+combining the uncompressed files using the <i>tar</i> command together with its <i>-c</i> and <i>-f</i>
+ options and then using bzip2 on the combined file. The -c option 
+instructs tar to combine the files, and the -f option tells it to use 
+the argument that follows as the name of the new file. For example, the 
+following commands would combine three files named <i>file4</i>, <i>file5</i> and <i>file6</i> into a single archive named <i>file7.tar</i> and then compress that archive into a compressed file named <i>file7.tar.bz2</i>:
+
+</p><blockquote>
+<p>
+<code>tar -cf file7.tar file4 file5 file6</code>
+</p>
+<p>
+<code>bzip2 file7.tar</code>
+</p>
+</blockquote>
+
+<p>
+Alternatively, this can all be accomplished in a single step by merely adding the <i>-j</i>
+ option to tar, which tells tar to compress the archive that it creates 
+with bzip2. Thus, the above example would be simplified to:
+
+</p><blockquote>
+<p>
+<code>tar -cjf file7.tar.bz2 file4 file5 file6</code>
+</p>
+</blockquote>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created June 13, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

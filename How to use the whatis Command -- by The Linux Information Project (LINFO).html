@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20whatis%20Command%20--%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the whatis Command -- by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+<br><br><center><h2>The whatis Command</h2></center><br>
+
+<table width="500" align="center"><tbody><tr><td>
+
+
+<p>
+The <i>whatis</i> <a href="http://www.linfo.org/command.html">command</a> provides very brief descriptions of <a href="http://www.linfo.org/command_line_program.html"><i>command line programs</i></a> (i.e., all-text mode <a href="http://www.linfo.org/program.html">programs</a>) and other topics related to <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>.
+</p>
+
+<p>
+It accomplishes this by searching the short descriptions in the <i>whatis database</i> for each keyword provided to it as an <a href="http://www.linfo.org/argument.html">argument</a> (i.e., input <a href="http://www.linfo.org/data.html">data</a>). This <a href="http://www.linfo.org/database.html">database</a> contains just the title, section number and description from the NAME section of each page in the <i>man</i> manual that is built into most Unix-like systems.
+</p>
+
+<p>
+The syntax for whatis is:
+</p>
+
+<blockquote>
+<p>
+<code>whatis keyword(s)</code>
+</p>
+</blockquote>
+
+<p>
+For example, the following provides a single line summary of the <a href="http://www.linfo.org/head.html"><i>head</i></a> command (which by default displays the first ten lines of each <a href="http://www.linfo.org/file.html">file</a> that is provided to it as an argument):
+</p>
+
+<blockquote>
+<p>
+<code>whatis head</code>
+</p>
+</blockquote>
+
+<p>
+whatis can be used to simultaneously search for information about 
+multiple topics. For example, the following would provide information 
+about both head and <a href="http://www.linfo.org/tail.html"><i>tail</i></a> (which by default reads the final ten lines of files):
+</p>
+
+<blockquote>
+<p>
+<code>whatis head tail</code>
+</p>
+</blockquote>
+
+<p>
+The output of whatis is limited by the fact that it provides only a 
+single line for each keyword found in the database; thus it supplies 
+incomplete information about even moderately complex commands. For 
+example, the following use of whatis to obtain information about the <a href="http://www.linfo.org/cat.html"><i>cat</i></a> command generates the output "concatenate files and print on the standard output":
+</p>
+
+<blockquote>
+<p>
+<code>whatis cat</code>
+</p>
+</blockquote>
+
+<p>
+However, this omits some important information about cat, particularly 
+the facts that it is very convenient to use for reading files and that 
+it is also used to create and write to files. 
+</p>
+
+<p>
+whatis is similar to the <a href="http://www.linfo.org/apropos.html"><i>apropos</i></a> command. However, apropos is more powerful in that its arguments are not limited to complete words but can also be <a href="http://www.linfo.org/string.html"><i>strings</i></a> (i.e., any finite sequences of <a href="http://www.linfo.org/character.html">characters</a>) which comprise parts of words. Both commands are unusual in that they have no <a href="http://www.linfo.org/option.html">options</a>. 
+</p>
+
+<p>
+The <a href="http://www.linfo.org/man.html"><i>man</i></a> command (which is used to read the built-in manual pages), when used with its <i>-f</i> option, produces the same output as whatis. Thus, for example,
+</p>
+
+<blockquote>
+<p>
+<code>man -f cat</code>
+</p>
+</blockquote>
+
+<p>
+is equivalent to
+</p>
+
+<blockquote>
+<p>
+<code>whatis cat</code>
+</p>
+</blockquote>
+
+
+<p>
+The <i>whatis database</i> is a <a href="http://www.linfo.org/plain_text.html"><i>plain text</i></a> (i.e., human-readable characters) file that is generated automatically by the <i>makewhatis</i> program. Its location varies according to the particular system; in the case of Red Hat <a href="http://www.linfo.org/linuxdef.html">Linux</a> 9, for example, its <a href="http://www.linfo.org/absolute_pathname.html">full path</a> is /var/cache/man/whatis.
+</p>
+
+<p>
+If desired, the database can be viewed using a command such as the following: 
+</p>
+
+<blockquote>
+<p>
+<code>cat /var/cache/man/whatis | less</code>
+</p>
+</blockquote>
+
+<p>
+In this command the output of <i>cat /var/cache/man/whatis</i> is <a href="http://www.linfo.org/pipes.html"><i>piped</i></a> (i.e., sent) to the <i>less</i>
+ command in order to make it easier to read by displaying only a single 
+page at a time rather than scrolling down the screen at high speed. 
+</p>
+
+
+
+
+</td></tr></tbody></table>
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created May 18, 2005. Updated May 7, 2007.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+
+
+</body></html>

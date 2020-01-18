@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="A%20second%20Linux%20command%20line%20tutorial_files/belug1.css">
+
+<title>A second Linux command line tutorial</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>How to Use the Command Line</h1></center>
+
+<center><h3>A Second Lesson</h3></center>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The article <i><a href="http://www.linfo.org/command_line_lesson_1.html">How to Use the Command Line, A First Lesson</a></i> briefly describes the <a href="http://www.linfo.org/command_line.html">command line</a>, explains why it is important, and tells how to access it. It also introduces what are probably the three most basic <a href="http://www.linfo.org/command.html">commands</a> on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>: <a href="http://www.linfo.org/pwd.html"><i>pwd</i></a> (which shows the directory in which the user is presently working), <i>ls</i> (which lists the files and directories) and <i>cd</i> (which changes directories).
+This lesson introduces six commonly used commands for creating, removing, copying and moving files and directories. 
+</p>
+
+<p>
+<strong>The touch Command</strong>
+</p>
+
+<p>
+The <a href="http://www.linfo.org/touch.html"><i>touch</i></a> command is the easiest way to create new, empty files. Its syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>touch [option] file_name(s)</code>
+</p>
+</blockquote>
+
+<p>
+No <a href="http://www.linfo.org/option.html">options</a> are required for basic file creation. Thus, for example, to create a new file named <i>file1</i> within the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a>
+ (i.e., the directory in which the user is currently working), all that 
+is necessary is to type the following command and then press the ENTER 
+key:
+</p>
+
+<blockquote>
+<p>
+<code>touch file1</code>
+</p>
+</blockquote>
+
+<p>
+Any number of files can be created simultaneously with touch. Each name 
+must be separated by at least one space. Thus, example, the following 
+would create three files named <i>file2</i>, <i>file3</i>, <i>file4</i>:
+</p>
+
+<blockquote>
+<p>
+<code>touch file2 file3 file4</code>
+</p>
+</blockquote>
+
+<p>
+The existence of these new files can easily be confirmed by using the <i>ls</i>
+ command and seeing if they are included in its output. For example, the
+ following would provide the names of all of the files and directories 
+in the current directory: 
+</p>
+
+<blockquote>
+<p>
+<code>ls</code>
+</p>
+</blockquote>
+
+<p>
+A useful feature of touch is that, in contrast to some commands, it does not automatically <i>overwrite</i> (i.e., erase the contents of) existing files that have the same names as new files being created.  
+</p>
+
+<p>
+<strong>The mkdir Command</strong>
+</p>
+
+<p>
+The <a href="http://www.linfo.org/mkdir.html"><i>mkdir</i></a> command is is used to create new directories (which are also referred to as <i>folders</i> in some operating systems). Its syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>mkdir [option] directory_name(s)</code>
+</p>
+</blockquote>
+
+<p>                                                        
+As is the case with touch, mkdir is usually used without any of its few options. <i>directory_name</i>
+ is the name of any directory that the user is asking mkdir to create. 
+Any number of directories can be created simultaneously. Thus, for 
+example, the following would create three directories in the current 
+directory with the names <i>dir1</i>, <i>dir2</i> and <i>dir3</i>:
+</p>
+
+<blockquote>
+<p>
+<code>mkdir dir1 dir2 dir3</code>
+</p>
+</blockquote>
+
+<p>                                                                                
+If a directory name provided as an <a href="http://www.linfo.org/argument.html"><i>argument</i></a>
+ (i.e., input) to mkdir is the same as that of an existing directory or 
+file in the same directory in which the user is asking mkdir to create 
+the new directory, mkdir will return a warning message such as <i>mkdir: cannot create directory `dir_1': File exists</i>
+ and will not create a directory with that name. However, it will then 
+continue to create directories for any other names provided as 
+arguments. 
+</p>
+
+<p>
+<strong>The rm Command</strong>
+</p>
+
+<p>
+The <a href="http://www.linfo.org/rm.html"><i>rm</i></a> command is often the most efficient way to remove files and directories. Its syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>rm [option] file_name(s)</code>
+</p>
+</blockquote>
+
+<p>
+Thus, for example, to delete file1, the following would be used:
+</p>
+
+
+<blockquote>
+<p>
+<code>rm file1</code>
+</p>
+</blockquote>
+
+<p>
+rm can delete any number of files simultaneously. Thus, for example, the following would remove both file2 and file3:
+</p>
+
+<blockquote>
+<p>
+<code>rm file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+This can become tedious if it is desired to delete a large number of 
+files, such as all of the files within a directory. A much more 
+efficient (but also more dangerous) way to do this is to use <i>wildcards</i>, which can be used to represent anything. For example, the star (*) <a href="http://www.linfo.org/character.html">character</a> is a wildcard that can represent any <a href="http://www.linfo.org/string.html"><i>string</i></a> (i.e., any sequence of characters). Therefore, the following would delete every file in the current directory:
+</p>
+
+<blockquote>
+<p>
+<code>rm *</code>
+</p>
+</blockquote>
+
+<p>
+And the following would remove everything in the directory dir1:
+</p>
+
+<blockquote>
+<p>
+<code>rm dir1/*</code>
+</p>
+</blockquote>
+
+<p>
+As another illustration of the great versatility that wildcards add to 
+the command line, the following would delete all files in the current 
+directory that have a <a href="http://www.linfo.org/filename_extension.html">file name extension</a> of <i>.html</i> but would leave all others intact:
+</p>
+
+<blockquote>
+<p>
+<code>rm *.html</code>
+</p>
+</blockquote>
+
+<p>
+As a safety measure, rm does not delete directories by default. This is 
+important because once deleted, it is extremely difficult or impossible 
+to recover deleted data on Unix-like operating systems (in contrast to 
+the Microsoft Windows operating systems). In order to delete 
+directories, it is necessary to use the <i>-r</i> option or the <i>-R</i> option (they are the same). This option <i>recursively</i>
+ removes directories, along with all of their contents, that are 
+included in the argument list; that is, the specified directories will 
+first be emptied of any subdirectories (including their subdirectories 
+and files, etc.) and files and then removed. 
+</p>
+
+<p>
+<strong>The rmdir Command</strong>
+</p>
+
+<p>
+The <a href="http://www.linfo.org/rmdir.html"><i>rmdir</i></a> command provides another way to remove empty directories. Its syntax is:
+</p>
+
+<blockquote>
+<p>
+<code>rmdir [option] directory_names</code>
+</p>
+</blockquote>
+
+<p>
+When used without any options, rm will delete any empty directories 
+whose names are supplied as arguments. Thus, for example, the following 
+command would remove two empty directories named <i>dir4</i> and <i>dir5</i> that are located in the current directory: 
+</p>
+
+<blockquote>
+<p>
+<code>rmdir dir4 dir5</code>
+</p>
+</blockquote>
+
+<p>
+The ability to remove only empty directories is a built-in safeguard 
+that helps prevent the accidental loss of data. In contrast to the rm 
+command, there is no <i>-r</i> option, at least on the <a href="http://www.linfo.org/gnu.html">GNU</a>
+ version that is standard on Linux. Thus, if a user wants to remove an 
+entire directory structure, it is usually most efficient to use rm with 
+its -r option rather than trying to first remove the contents of each 
+directory, its subdirectories, etc. 
+</p>
+
+<p>
+<strong>The cp Command</strong>
+</p>
+
+<p>
+The <i>cp</i> command is used to copy files and directories. The copies 
+become independent of the originals (i.e., a subsequent change in one 
+will not affect the other). 
+</p>
+
+<p>
+cp's basic syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>cp [options] name new_name</code>
+</p>
+</blockquote>
+
+<p>
+ If a file with the same name as that assigned to the copy of a file (or
+ a directory with the same name as that assigned to the copy of a 
+directory) already exists, it will be overwritten. By default, cp only 
+copies files and not directories.
+</p>
+
+<p>
+When a copy is made of a file or directory, the copy must have a 
+different name than the original if it is to be placed in the same 
+directory as the original. However, the copy can have the same name if 
+it is made in a different directory. Thus, for example, a file named <i>file4</i> which resides in the current directory could be copied with the same name into another directory, such as into <i>/home/john/</i>, as follows:
+</p>
+
+
+<blockquote>
+<p>
+<code>cp file4 /home/john/file4</code>
+</p>
+</blockquote>
+
+<p>
+Any number of files can be simultaneously copied into another directory 
+by listing their names followed by the name of the directory. cp is an <i>intelligent</i>
+ command and knows to do this when only the final argument is a 
+directory. The files copied into the directory will all have the same 
+names as the originals. Thus, for example, the following would copy the 
+files named <i>file5</i>, <i>file6</i> and <i>file7</i> into a directory named <i>dir6</i>:
+</p>
+
+<blockquote>
+<p>
+<code>cp file5 file6 file7 dir6</code>
+</p>
+</blockquote>
+
+<p>
+cp's <i>-r</i> option, which can also be written with an upper case -R, 
+allows directories including all of their contents to be copied. Thus, 
+for example, the following command would make a copy of an existing 
+directory called <i>dir7</i>, inclusive of all it contents (i.e., files, subdirectories, their subdirectories, etc.), called <i>dir8</i>: 
+</p>
+
+<blockquote>
+<p>
+<code>cp -r dir7 dir8</code>
+
+</p>
+</blockquote>
+<br>
+
+
+<p>
+<strong>The mv Command</strong>
+</p>
+
+<p>
+The <i>mv</i> command is used to rename and move files and directories. Its basic syntax is:
+</p>
+
+<blockquote>
+<p>
+<code>mv [options] source target</code>
+</p>
+</blockquote>
+
+<p>
+If the target file or directory is located in the same directory as the 
+source file or directory, then the source file or directory can only be 
+renamed. If both are in different directories, then the source file or 
+directory is moved to a new directory, in which it can keep its original
+ name or be assigned a new name.
+</p>
+
+<p>
+Thus, for example, to rename a file called <i>file8</i> to <i>file9</i>, both in the current directory, the following would be used:
+</p>
+
+<blockquote>
+<p>
+<code>mv file8 file9</code>
+</p>
+</blockquote>
+
+<p>
+The following would move a file named <i>file10</i>, without changing its name, from the current directory to an existing subdirectory of the current directory named <i>dir9</i>:
+</p>
+
+<blockquote>
+<p>
+<code>mv file10 dir9/file10</code>
+</p>
+</blockquote>
+
+<p>
+Detailed information (including all options) about mv as well as all of 
+the other commands discussed above can be obtained by using their <i>--help</i> option. Thus, for example, to obtain more information about the mv command, the following would be used:
+</p>
+
+<blockquote>
+<p>
+<code>mv --help</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, information about the current version of each command can be obtained by using its <i>--version</i> option.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created April 16, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

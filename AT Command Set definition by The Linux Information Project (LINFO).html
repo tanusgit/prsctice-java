@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="AT%20Command%20Set%20definition%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>AT Command Set definition by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>AT Command Set Definition</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+The <i>AT command set</i>, officially known as the <i>Hayes Standard AT Command Set</i>, is the <a href="http://www.linfo.org/de_facto_standard.html">de facto standard</a> set of instructions for configuring and controlling modems. 
+</p>
+
+<p>
+Pronounced <i>ay-tee</i>, this set was developed by Hayes Microcomputer 
+Products, a pioneer in the modem field, and it is used in its entirety 
+or in part by almost every manufacturer of modems for use with personal 
+computers.
+</p>
+
+<p>
+The <a href="http://www.linfo.org/command.html">commands</a> are short sequences of <a href="http://www.linfo.org/ascii.html">ASCII</a> <a href="http://www.linfo.org/character.html">characters</a>. All command <a href="http://www.linfo.org/string.html"><i>strings</i></a> (i.e., sequences of characters) must be prefaced by the letters AT, an abbreviation for <i>attention</i>, thereby accounting for the name of the set.
+</p>
+
+<p>
+The commands can be divided into four categories: basic, extended, 
+proprietary and register. The basic commands consist of a capital letter
+ followed by an integer, such as M1 (which stands for <i>speaker on until remote carrier connected</i>).
+ The extended commands are an extension of the basic command set, and 
+they are preceded by an ampersand to indicate that the characters that 
+follow have a different meaning from what they would have in the basic 
+command set (e.g., &amp;M1 has a different meaning from M1). The <a href="http://www.linfo.org/proprietary.html">proprietary</a>
+ commands typically begin with either a backslash or a percentage sign. 
+The register commands begin with a capital S followed by the number of 
+the <i>register</i> to be changed, an equals sign, and finally the new value that is to be assigned to it.
+</p>
+
+<p>
+A register is a physical location in the small amount of <a href="http://www.linfo.org/memory.html">memory</a>
+ that is used to store currently or frequently used data. It is 
+typically built into microprocessors, but it could be part of a separate
+ memory chip in a modem. For example, the command S5=80 instructs the 
+computer to set the modem's fifth register to the value 80.
+</p>
+
+<p>
+There is frequently some variation in the command set according to the 
+modem manufacturer. This is particularly true for the proprietary 
+commands. Thus, it is best to consult the command set for a specific 
+model of modem rather than relying on any generic listing of commands. 
+Places where information on command sets for specific modems might be 
+found include the manual or floppy disk that came with the modem, the 
+Internet and the modem itself (accessed via a computer).
+</p>
+
+<p>
+One of the most familiar AT commands is the ATZ that typically appears 
+at the start of the modem initialization. This string is a combination 
+of AT, which initiates the commands, and Z, which resets the modem to 
+its default state. 
+</p>
+
+<p>
+The command ATDT represents the initialization string followed by D, 
+which represents dial, and T, which represents touch tone dialing (as 
+opposed to P for pulse dialing).  
+</p>
+
+<p>
+Modems are configured by sending AT commands to them from the computer 
+on the same serial lines that are used by the computer to send data to 
+the modem.
+</p>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created November 27, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20echo%20Command_files/belug1.css">
+
+<title>The echo Command</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The echo Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+<i>echo</i> is a built-in <a href="http://www.linfo.org/command.html"><i>command</i></a> in the <i>bash</i> and <i>C</i> <a href="http://www.linfo.org/shell.html"><i>shells</i></a> that writes its <a href="http://www.linfo.org/argument.html"><i>arguments</i></a> to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a>. 
+</p>
+
+<p>
+A shell is a <a href="http://www.linfo.org/program.html">program</a> that provides the <a href="http://www.linfo.org/command_line.html">command line</a> (i.e., the all-text display user <a href="http://www.linfo.org/interface.html">interface</a>) on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. It also executes (i.e., runs) commands that are typed into it and displays the results. bash is the default shell on Linux. 
+</p>
+
+<p>
+A command is an instruction telling a computer to do something. An 
+argument is input data for a command. Standard output is the display 
+screen by default, but it can be <a href="http://www.linfo.org/redirection.html">redirected</a> to a file, printer, etc.
+</p>
+
+<p>
+The syntax for echo is 
+</p>
+
+<blockquote>
+<p>
+<code>echo [option(s)] [string(s)]</code>
+</p>
+</blockquote>
+
+<p>
+The items in square brackets are optional. A <a href="http://www.linfo.org/string.html"><i><i>string</i></i></a> is any finite sequence of <a href="http://www.linfo.org/character.html"><i>characters</i></a> (i.e., letters, numerals, symbols and punctuation marks). 
+</p>
+
+<p>
+When used without any options or strings, echo returns a blank line on the display screen followed by the <a href="http://www.linfo.org/command_prompt.html">command prompt</a>
+ on the subsequent line. This is because pressing the ENTER key is a 
+signal to the system to start a new line, and thus echo repeats this 
+signal. 
+</p>
+
+<p>
+When one or more strings are provided as arguments, echo by default 
+repeats those stings on the screen. Thus, for example, typing in the 
+following and pressing the ENTER key would cause echo to repeat the 
+phrase <i>This is a pen.</i> on the screen:
+</p>
+
+<blockquote>
+<p>
+<code>echo This is a pen.</code>
+</p>
+</blockquote>
+
+<p>
+It is not necessary to surround the strings with quotes, as it does not 
+affect what is written on the screen. If quotes (either single or 
+double) are used, they are not repeated on the screen.  
+</p>
+
+<p>
+Fortunately, echo can do more than merely repeat verbatim what follows 
+it. That is, it can also show the value of a particular variable if the 
+name of the variable is preceded directly (i.e., with no intervening 
+spaces) by the dollar character ($), which tells the shell to substitute
+ the value of the variable for its name. 
+</p>
+
+<p>
+For example, a variable named <i>x</i> can be created and its value set to 5 with the following command:
+</p>
+
+<blockquote>
+<p>
+<code>x=5</code>
+</p>
+</blockquote>
+
+<p>
+The value of x can subsequently be recalled by the following:
+</p>
+
+<blockquote>
+<p>
+<code>echo The number is $x.</code>
+</p>
+</blockquote>
+
+<p>
+Echo is particularly useful for showing the values of <i>environmental variables</i>, which tell the shell how to behave as a user works at the command line or in <i>scripts</i> (short programs). 
+</p>
+
+<p>
+For example, to see the value of HOME, the environmental value that shows the current user's <a href="http://www.linfo.org/home_directory.html">home directory</a>, the following would be used: 
+</p>
+
+<blockquote>
+<p>
+<code>echo $HOME</code>
+</p>
+</blockquote>
+
+<p>
+Likewise, echo can be used to show a user's PATH environmental variable,
+ which contains a colon-separated list of the directories that the 
+system searches to find the executable program corresponding to a 
+command issued by the user:
+</p>
+
+<blockquote>
+<p>
+<code>echo $PATH</code>
+</p>
+</blockquote>
+
+<p>
+echo, by default, follows any output with a <i>newline character</i>. This is a <i>non-printing</i> (i.e., invisible) character that represents the end of one line of text and the start of the next. It is represented by <i>\n</i>
+ in Unix-like operating systems. The result is that the subsequent 
+command prompt begins on a new line rather than on the same line as the 
+output returned by echo.
+</p>
+
+<p>
+The <i>-e</i> option is used to enable echo's interpretation of 
+additional instances of the newline character as well as the 
+interpretation of other special characters, such as a horizontal tab, 
+which is represented by <i>\t</i>. Thus, for example, the following would produce a formatted output:
+</p>
+
+<blockquote>
+<p>
+<code>echo -e "\n Projects: \n\n\tplan \n\tcode \n\ttest\n"</code>
+</p>
+</blockquote>
+
+<p>
+(The above command should be written on a single line, although it may render as two lines on smaller display screens.) The <i>-n</i> option can be used to stop echo from adding the newline to output. 
+</p>
+
+<p>
+By making use of output redirection, echo provides a very simple way of 
+creating a new file that contains text. This is accomplished by typing <i>echo</i>
+ followed by the desired text, the output redirection operator (which is
+ a rightward pointing angle bracket) and finally the name of the new 
+file. The file can likewise be formatted by using special characters. 
+Thus, for example, the formatted output from the above example could be 
+used to create a new file called <i>project1</i>:
+</p>
+
+<blockquote>
+<p>
+<code>echo -e "\n Project1: \n\n\tplan \n\twrite \n\ttest\n" &gt; project1</code>
+</p>
+</blockquote>
+
+<p>
+The contents of the new file, including any formatting, can be verified by using a command such as <a href="http://www.linfo.org/cat.html"><i>cat</i></a> or <i>less</i>, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>less project1</code>
+</p>
+</blockquote>
+
+<p>
+echo can likewise be a convenient way of appending text to the end of a file by using it together with the the <i>append operator</i>,
+ which is represented by two consecutive rightward pointing angle 
+brackets. However, there is always the risk of accidentally using a 
+single bracket instead of two, thereby overwriting all of the contents 
+of the file, and thus, this feature is best reserved for use in scripts.
+</p>
+
+<p>
+echo can also be used with <i>pattern matching</i>, such as the <i>wildcard character</i>, which is represented by the star character. For example, the following would return the phrase <i>The gif files are</i> followed by the names of all the .gif image files in the current directory: 
+</p>
+
+<blockquote>
+<p>
+<code>echo -e The gif files are *.gif</code>
+</p>
+</blockquote>
+
+<p>
+echo is also commonly used to have a shell script display a message or instructions, such as <i>Please enter Y or N</i> in an interactive session with users.</p>
+
+<p>
+echo is turned off automatically when passwords are entered so that they will not be shown on the screen. 
+</p>
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created September 19, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

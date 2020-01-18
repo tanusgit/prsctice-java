@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Entering%20Text%20in%20vi_files/belug1.css">
+
+<title>Entering Text in vi</title></head>
+
+<body bgcolor="#ffffff">
+
+
+<a href="http://www.bellevuelinux.org/">BELUG</a> &gt;
+<a href="http://www.linfo.org/vi/index.html">vi</a> &gt;
+<a href="http://www.linfo.org/vi/open.html">previous</a>
+
+
+<br><center><h1>Entering Text</h1></center>
+
+
+<table width="100%" border="0"><tbody><tr><td border="0" width="10%"></td><td border="0" width="80%">
+
+
+
+
+
+
+<p>vi has two basic  modes of operation: command mode and text insert 
+mode. How to switch back and forth between them is probably the most 
+confusing thing about vi for beginners. But it is actually very simple, 
+and once you get used to it you might also find it quite efficient.
+
+</p>
+
+<p>
+Command mode is the default mode when a file (existing or new) is 
+opened. (This is the opposite of most text and word processors and 
+therefore may seem counter-intuitive.) Because every file opens 
+initially in command mode, you can not immediately begin typing text. 
+That is, everything that is typed on the keyboard is interpreted by vi 
+to be a command. 
+</p>
+
+<p>
+
+
+</p>
+
+<p>Examples of the many types of commands that you can perform on a file
+ while in command mode are (1) switching to text insert mode,  (2) 
+moving the cursor around the file, (3) deleting characters or lines, (4)
+ transposing characters, (6) changing case, (6) appending the contents 
+of the file to another (closed) file, (7) setting vi options, (8) saving
+ the file to disk and (9) closing the file and quitting vi.</p>
+
+<p>
+The other mode, text insert mode, is also referred to as simply "insert 
+mode" or "input mode." It is used for entering text  into the buffer 
+memory (and simultaneously onto the screen). In this mode everything 
+that is typed on the keyboard is added to the text and does not become a
+ command (although you can perform some command operations in text mode 
+with vi clones).</p>
+
+<p> The most common way to switch from command mode to the input mode is to use the <b>i</b>  (which stands for "insert" or "input") command. This is accomplished by simply typing the letter <code>i</code> while in command mode. Now you are ready to start typing text.</p>
+
+
+<p>Unlike word processors and even most word editors, there is no 
+automatic word wrap in the traditional version of vi (although you will 
+notice it in some clones). New lines are started by pressing ENTER.</p>
+
+
+<p>When you are finished typing text or you want to perform some other 
+operation such as moving to a different position in the text or deleting
+ some of it, hit ESC in order to return to the command mode.</p>
+
+<p>It is not easy to determine vi's current mode. But  this is not 
+really a problem because, if in doubt, just press ESC and you will know 
+that you are in the command mode (this will put you in command mode if 
+you were not already in it).</p>
+
+<p>Once you have typed some text, you can use the four basic commands 
+for moving the cursor around the text. These commands enable you to go 
+to any desired location in order to modify the text, including making 
+insertions and deletions.
+The four basic cursor positioning commands are:</p>
+
+<blockquote>
+
+<p><b>h</b>    &nbsp;&nbsp; move cursor one character to left
+<br><b>j</b> &nbsp;&nbsp; move cursor one line down
+<br><b>k</b> &nbsp;&nbsp; move cursor one line up
+<br><b>l</b> &nbsp;&nbsp; move cursor one character to right</p>
+
+</blockquote>
+
+
+
+<p>Each of these commands can be either used by itself or  modified by 
+typing an integer in front of it to indicate the number of characters or
+ lines to move. For example, typing (in command mode, of course) </p>
+
+
+<blockquote>
+<p>
+<code>3j</code>
+</p>
+</blockquote>
+
+
+<p>will move the cursor  down three lines. Or typing <code>2h</code> will move it two characters to the left.
+ </p>
+
+
+<p>These commands can be repeated by holding the key down. If you attempt an impossible movement, such as pressing <code>k</code>
+ when the cursor is on the top line, the screen might flash or a beeping
+ sound might be made (depending on how your computer is set up). </p>
+
+
+<p>
+The cursor can be moved directly to any desired line by using the <b>G</b> command preceded by the line number. For example, typing</p>
+
+
+
+<blockquote>
+<p>
+<code>5G</code>
+</p>
+</blockquote>
+
+
+
+
+<p>moves the cursor to the fifth line from the top of the text. Just typing <code>G</code> without any number moves the cursor to the final line of text.
+
+
+</p>
+
+<p> When you switch from command mode to input mode with the <b>i</b> 
+command and then start typing text, each character you type is placed to
+ the left of the character covered by the cursor. This causes the 
+character covered by the cursor as well as everything to its right to be
+ shifted  to the right. 
+</p>
+
+<p>
+There will be times when you will want to place a character to the right
+ of the character under the cursor. This is particularly useful when the
+ cursor is over the last character in a line and you want to append the 
+line. To do this, simply use the <b>a</b> (lower case "a," which stands for "append") command instead of the <b>i</b> command to switch from command mode into insert mode.
+</p>
+
+
+
+<p>After you have saved a file that you have created or modified using 
+vi, you might want to verify that its contents are really what you had 
+intended. One way to do this is to use <i>cat</i>, the Unix 
+concatenation utility.  (No, this has no relationship to the popular 
+domesticated animal whose name has the same spelling). For example, 
+type:</p>
+
+<blockquote>
+<p>
+<code>cat /home/john/fruit/lemon</code>
+</p>
+</blockquote>
+
+
+<p>This causes the contents of the file "lemon" in the /home/john/fruit/
+ directory to be displayed on the screen in a read-only form.</p>
+
+<p>Of course, if your current directory is already /home/john/fruit/, then you only need to type:</p>
+
+<blockquote>
+<p>
+<code>cat lemon</code>
+</p>
+</blockquote>
+
+
+
+
+
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+          
+<p class="vilink">Next: <a href="http://www.linfo.org/vi/edit.html">Editing Text</a>   
+
+</p><p><br>
+</p>
+
+      
+
+
+<!-- Copyright 2004 Paul Zimmer. All Rights Reserved. -->
+
+</td><td border="0" width="10%"></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

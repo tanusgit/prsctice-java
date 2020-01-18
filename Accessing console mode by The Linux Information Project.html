@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="Accessing%20console%20mode%20by%20The%20Linux%20Information%20Project_files/belug1.css">
+
+<title>Accessing console mode by The Linux Information Project</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>How To Switch To And From Console Mode</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p> 
+<i>Console mode</i> (i.e., all-text mode) can be both useful and convenient in <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. Fortunately, there are several simple ways to access a <a href="http://www.linfo.org/console.html">console</a> and then return to a <a href="http://www.linfo.org/gui.html">GUI</a> (graphical user interface), which is the default type of <a href="http://www.linfo.org/user_interface.html">user interface</a> on most computers today. 
+</p>
+
+<p>
+There are a few good reasons that <i>command line interfaces</i> (CLI) 
+are available on modern operating systems in spite of the strong 
+preference for GUIs by most ordinary users. One is that many users find 
+the <a href="http://www.linfo.org/command_line.html">command line</a> to
+ be more convenient than the GUI for some operations once they become 
+familiar with it. Another is that it allows numerous tasks to be 
+performed that are impossible or inconvenient with GUIs. Moreover, 
+sometimes the command line is all that is available to work on a highly 
+specialized system or to repair a damaged system. 
+</p>
+
+<p>
+A CLI is an all-text mode <a href="http://www.linfo.org/interface.html">interface</a>. It is provided in console mode, but it can also be obtained in GUI mode by opening a <a href="http://www.linfo.org/terminal_window.html"><i>terminal window</i></a>, which is a <a href="http://www.linfo.org/window.html">window</a>
+ that contains only text and emulates console mode. Terminal windows 
+have several advantages over console mode, including the ability to have
+ multiple terminal windows open simultaneously, the ability to easily 
+move and resize them and the ability to keep other types of windows 
+(e.g., those containing word processor documents or images) open on the 
+screen at the same time. 
+</p>
+
+<p>
+Despite these advantages, there are also situations in which it can be 
+preferable to open a console. One is the (fortunately relatively rare) 
+situation in which the entire GUI has frozen or otherwise stopped 
+functioning properly and thus it is necessary to try to repair it. 
+Although <i>rebooting</i> (i.e., restarting the computer) is an option 
+in such circumstances, it can result in the loss of both unsaved data 
+and user time. Also, some advanced users may feel very comfortable with 
+the console for most operations and only require a GUI for some 
+specialized tasks such as surfing the web or processing images. In 
+addition, some users may be most comfortable with a GUI but desire to 
+become familiar with the console in case they really need it some day.
+</p>
+
+<p>
+One way to access a console is to have the computer <i>boot</i> (i.e., start up) directly into it by default instead of into a GUI. This can be accomplished by modifying the <i>/etc/inittab</i> file manually with a text editor to change the <a href="http://www.linfo.org/runlevel_def.html"><i>runlevel</i></a>
+ from 5 (which represents the GUI) to 3 (which represents the console). 
+Each runlevel designates a different system configuration and allows 
+access to a different combination of services. Then, when the user wants
+ to switch to the GUI, all that is necessary is to type the following <a href="http://www.linfo.org/command.html">command</a> at the command line and press the ENTER key: 
+</p>
+
+<blockquote>
+<p>
+<code>startx</code>
+</p>
+</blockquote>
+
+<p>
+This causes the <a href="http://www.linfo.org/x_server.html"><i>X server</i></a> to be launched, and the standard GUI thus appears within a matter of seconds. An X server is a <a href="http://www.linfo.org/program.html">program</a> in the <i>X Window System</i> that runs on <a href="http://www.linfo.org/local_machine.html"><i>local machines</i></a>
+ (i.e., the computers used directly by users) and handles access to the 
+graphics cards, display screens and input devices (typically a keyboard 
+and mouse) on those computers on behalf of the GUI. The X Window System 
+is the default <a href="http://www.linfo.org/software.html">software</a>
+ package for managing GUIs on Unix-like operating systems. The default 
+user interface can later be changed back to a GUI by again editing 
+/etc/inittab to change the runlevel back to 5. 
+</p>
+
+<p>
+A quicker and more flexible way to change from a GUI to a console or visa versa is to use the <i>telinit</i>
+ command, which immediately modifies the runlevel. Thus, for example, to
+ exit the GUI and enter a console, all that is necessary is to open a 
+terminal window, log in as the <a href="http://www.linfo.org/root.html"><i>root</i></a> (i.e., administrative) user, and then issue the following command: 
+</p>
+
+<blockquote>
+<p>
+<code>/sbin/telinit 3</code>
+</p>
+</blockquote>
+
+<p>
+The fastest and most flexible way of switching back and forth between a 
+GUI and a console is to use simple keyboard commands. That is, the GUI 
+can be closed immediately and replaced by a console by simultaneously 
+pressing three keys: the CTRL key, the ALT key and any one of the 
+function keys from F1 through F6. It is not necessary to be the root 
+user or to open a terminal window. This is particularly useful for 
+emergencies such as a frozen GUI when it is impossible to use a terminal
+ window to correct the situation.
+</p>
+
+<p>
+It is easy to return to the GUI from a console that has been brought up 
+on the display screen using the above key combination. All that is 
+necessary is to simultaneously press the CTRL, ALT and F7 keys. The 
+startx command should not be used in this situation because the X server
+ is already running; it just is not being shown on the display screen.
+</p>
+
+<p>
+Sometimes when the GUI is frozen or otherwise not performing properly, 
+merely the act of switching out of the GUI into the console and then 
+switching back to the GUI is sufficient to solve the problem. At other 
+times, it will will be necessary to take additional steps while in 
+console mode, such as attempting to locate the specific program that is 
+causing the problem and then terminating that program.
+</p>
+
+
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created December 24, 2005.<br>
+Copyright © 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

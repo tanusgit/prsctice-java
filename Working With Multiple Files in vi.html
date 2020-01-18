@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Working%20With%20Multiple%20Files%20in%20vi_files/belug1.css">
+
+<title>Working With Multiple Files in vi</title></head>
+
+<body bgcolor="#ffffff">
+
+
+<a href="http://www.bellevuelinux.org/">BELUG</a> &gt;
+<a href="http://www.linfo.org/vi/index.html">vi</a> &gt;
+<a href="http://www.linfo.org/vi/search.html">previous</a>
+
+
+<br><center><h1>Working With Multiple Files</h1></center>
+
+
+<table width="100%" border="0"><tbody><tr><td border="0" width="10%"></td><td border="0" width="80%">
+
+
+
+
+
+
+<p>
+It is easy to insert text into an open file from another file. All that 
+is necessary is to move the cursor to the location where you want the 
+text inserted, then type
+
+</p>
+
+<blockquote>
+<p>
+<code>:r filename</code>
+</p>
+</blockquote>
+
+<p>
+where "filename" is the name of the file to insert. 
+</p>
+
+<p>
+For example, if you want to copy the contents of the file "peach" into 
+the file "fruit," you would first position the cursor to the desired 
+line in "fruit" and then type</p>
+
+<blockquote>
+<p>
+<code>:r peach</code>
+</p>
+</blockquote>
+
+<p>Notice that this operation causes no change to the file "peach."
+</p>
+
+
+<p>You can also append text from the currently open file to any other file. This is accomplished  using the <b>:w</b> (colon + "w") command followed without a space by <b>&gt;&gt;</b>. For example, to append the contents of a currently open file named "pear" to the file named "apple," type  
+</p>
+
+<blockquote>
+<p>
+<code>:w&gt;&gt; apple</code>
+</p>
+</blockquote>
+
+
+<p>At times it can be convenient to open multiple files simultaneously. 
+This is efficiently accomplished by just listing all of the files to be 
+opened after the <b>vi</b> command. For example, to simultaneously open files about three kinds of fruit, type:
+</p>
+
+<blockquote>
+<p>
+<code>vi apple pear orange</code>
+</p>
+</blockquote>
+
+
+<p>
+This allows you to edit "apple" first. After saving "apple," typing <code>:n</code> calls up "pear" for editing.
+
+</p>
+
+<p>If you want to simultaneously open all files in the current directory, just type <code>vi *</code> (vi + space + asterisk).   </p>
+
+
+
+
+
+
+
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+          
+<p class="vilink">Next: <a href="http://www.linfo.org/vi/additional.html">Additional Operations</a>   
+
+</p><p><br>
+</p>
+
+      
+
+
+<!-- Copyright 2004 Paul Zimmer. All Rights Reserved. -->
+
+</td><td border="0" width="10%"></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

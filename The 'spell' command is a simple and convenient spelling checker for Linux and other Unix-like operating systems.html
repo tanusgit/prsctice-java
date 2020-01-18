@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="The%20'spell'%20command%20is%20a%20simple%20and%20convenient%20spelling%20checker%20for%20Linux%20and%20other%20Unix-like%20operating%20systems_files/belug1.css">
+
+<title>The "spell" command is a simple and convenient spelling checker for Linux and other Unix-like operating systems.</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The spell Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+One of the characteristics of the English written language is that its <i>orthography</i>
+ (i.e., spelling) is complex and can be difficult to remember. This is 
+in contrast to many languages (e.g., Spanish and German) for which the 
+spelling of words is closely related to their pronunciation. 
+Fortunately, technology has come to the rescue, and there are multiple 
+ways to check and correct spelling on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_systems_list.html">operating systems</a>. 
+</p>
+
+<p>
+One of the simplest, and sometimes most convenient, of these spelling checkers is the <i>spell</i> <a href="http://www.linfo.org/command.html">command</a>.
+ Despite its lack of sophisticated features, it is still worth being 
+aware of spell for several reasons, including (1) it is very easy to 
+use, (2) it can be found on many Unix-like systems and (3) it is well 
+suited for use with other commands linked by <a href="http://www.linfo.org/pipe.html"><i>pipes</i></a> (which are used to combine commands). 
+</p>
+
+<p>
+spell compares words typed in at the keyboard or the contents of a text 
+file to those in a built-in dictionary file and then writes all of the 
+words not in the dictionary (and, therefore, presumably misspelled) to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a> (which is the display screen by default). 
+</p>
+
+<p>
+On some systems spell is a stand-alone program, either the original version or the <a href="http://www.linfo.org/gnu.html">GNU</a> <a href="http://www.linfo.org/clone.html">clone</a>. On others, such as Red Hat Linux 9, it is a <i>shell script</i> (i.e., a simple program) that launches a simplified version of another spelling checking program, <i>aspell</i>, which emulates the core function of spell. 
+</p>
+
+<p>
+spell displays each presumably misspelled word on a new line. In the case of the Red Hat version, the words are displayed in <a href="http://www.linfo.org/alphabet.html">alphabet</a>ic
+ order and each erroneous spelling is displayed only once, regardless of
+ the number of times that it appears in the text. If multiple files are 
+specified for checking, a single, alphabetized list of words is still 
+generated. 
+</p>
+
+<p>
+spell's syntax is
+</p>
+
+<blockquote>
+<p>
+<code>spell [options] [file_name(s)]</code>
+</p>
+</blockquote>
+
+<p>
+The items in the square brackets are optional. When no file names are supplied as <a href="http://www.linfo.org/argument.html">arguments</a> (i.e., inputs), spell will read from <a href="http://www.linfo.org/standard_input.html">standard input</a>, which by default is text typed in at the <a href="http://www.linfo.org/command_line.html">command line</a>. 
+</p>
+
+<p>
+For example, it can easily be determined whether the word <i>desireable</i> is spelled correctly by first entering at the command line the <code>spell</code> command, pressing the RETURN key, typing the word <code>desireable</code>, pressing RETURN again and then simultaneously press the CONTROL key and the <i>d</i> key. The output will look like the following:
+</p>
+
+
+<blockquote>
+<p>
+<code>$ spell</code><br>
+<code>desireable</code> <br>
+<code>desireable</code><br>
+<code>$</code><br>
+</p>
+</blockquote>
+
+<p>
+The word <i>desireable</i> is <i>echoed</i> (i.e., repeated by the 
+system) because it is not in the system dictionary and is thus quite 
+likely a spelling error. If the same procedure is repeated using <i>desirable</i> (i.e., omitting the second <i>e</i>),
+ then it is not echoed, because it is in the system dictionary and is 
+therefore the correct spelling. Thus, the screen would look like:
+</p>
+
+<blockquote>
+<p>
+<code>$ spell</code><br>
+<code>desirable</code> <br>
+<code>$</code><br>
+</p>
+</blockquote>
+
+<p>
+spell can also be used with lists of words  and sentences. For example, typing <code>spell</code>, pressing the RETURN key, typing the sentence &nbsp;  <code>This is the storry abuot an operating system that went from baad to wurse,</code> &nbsp; pressing RETURN again, and finally simultaneously pressing the CONTROL key and the <i>d</i> key would produce the following output:
+</p>
+
+<blockquote>
+<p>
+<code>$ spell</code><br>
+<code>This is the storry abuot an operating system that went from baad to wurse</code> <br>
+<code>abuot</code><br>
+<code>baad</code><br>
+<code>storry</code><br>
+<code>wurse</code><br>
+<code>$</code><br>
+</p>
+</blockquote>
+
+<p>
+To find any spelling errors in a file, all that is necessary to supply 
+the name of the file as an argument after the command and any options. 
+For example, the following will search for errors in a file named <i>file1</i>: 
+</p>
+
+<blockquote>
+<p>
+<code>spell file1</code>
+</p>
+</blockquote>
+
+<p>
+spell can be used to check any number of files simultaneously by listing them all as arguments, for example:
+</p>
+
+<blockquote>
+<p>
+<code>spell file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+It is then a simple matter to correct the misspellings using a text editor (e.g., <a href="http://www.linfo.org/vi/index.html"><i>vi</i></a> or <i>gedit</i>).
+</p>
+
+<p>
+As is the case with other <a href="http://www.linfo.org/filter.html">filters</a>, the output of spell can be redirected from standard output using the <i>standard output redirection operator</i>,
+ which is designated by a rightward facing angular bracket. For example,
+ the following tells spell to check the spelling of all words in the 
+first three files and write its output to <i>file4</i> instead of to the display screen:
+</p>
+
+<blockquote>
+<p>
+<code>spell file1 file2 file3 &gt; file4</code>
+</p>
+</blockquote>
+
+<p>
+The output of spell can also be further processed by using pipes to send
+ it to other filters. For example, in the following example the output 
+of spell is piped to <i>grep</i> (which is used to search for files and the contents of files) in order to display only those misspelled words in <i>file5</i> that contain the sequence of letters <i>com</i>
+</p>
+
+<blockquote>
+<p>
+<code>spell file5 | grep com </code>
+</p>
+</blockquote>
+
+<p>
+The output could likewise be redirected to a file instead of to the display screen, such as to a new or existing file named <i>file6</i>:
+</p>
+
+<blockquote>
+<p>
+<code>spell file5 | grep com &gt; file6</code>
+</p>
+</blockquote>
+<br>
+
+<p>
+Although spell is very useful for checking text against the several tens
+ of thousands of commonly used words in the English language that are 
+included in the dictionary file, it does not do a good job of checking 
+technical terminology, proper nouns (e.g., names of people, places and 
+products) and slang.  
+</p>
+
+<p>
+Also, spell is not <i>interactive</i>. That is, it does not highlight 
+misspelled words in a file and assist the user in correcting them one by
+ one in the context of the text. However, this can be an advantage in 
+some cases, particularly if the user merely wants to see a list of the 
+potentially misspelled words in a file without having to go through and 
+attempt to correct all of them. 
+</p>
+
+<p>
+Moreover, some of the useful features that come with the original 
+version of spell are not found on the aspell emulation version. For 
+example, the original Unix version has several options, including <i>-b</i>, which accepts UK spellings (e.g. labour, colour, centre), and <i>-x</i>,
+ which displays every possible stem for each word. The original version 
+also allows users to create their own supplementary dictionary files, 
+which can be very useful for adding technical terms and proper nouns. 
+</p>
+
+<p>
+When more features are desired for a command line spelling checker than 
+are available on the the aspell emulation version, the user should 
+consider installing the original version of spell or its GNU clone or 
+using a more sophisticated program such as aspell or <i>ispell</i>, both
+ of which are interactive and allow the use of user-created 
+dictionaries. aspell is better at making suggestions when a word is 
+seriously misspelled, whereas ispell has the advantage that it can be 
+used with numerous foreign languages.  
+</p>
+
+<p>
+This article was written using the <i>gedit</i> text editor on a Red Hat
+ 9 Linux machine. spell was used to check the spelling after the final 
+proofreading by the author, and it found several errors. Interestingly, 
+the only word that was misspelled multiple times was the word <i>misspell</i> itself, which was spelled <i>mispell</i>.
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created June 1, 2004. Updated September 18, 2005.<br>
+Copyright © 2004 - 2005 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Summary%20of%20Commands%20in%20vi_files/belug1.css">
+
+<title>Summary of Commands in vi</title></head>
+
+<body bgcolor="#ffffff">
+
+
+<a href="http://www.bellevuelinux.org/">BELUG</a> &gt;
+<a href="http://www.linfo.org/vi/index.html">vi</a> &gt;
+<a href="http://www.linfo.org/vi/additional.html">previous</a>
+
+
+<br><center><h1>Summary of Commands</h1></center>
+
+
+<table width="100%" border="0"><tbody><tr><td border="0" width="10%"></td><td border="0" width="80%">
+
+
+
+
+
+
+<p>The following list contains the basic commands presented in the first
+ eight pages of this tutorial along with occasional examples of usage 
+(shown in parenthesis). They are presented in roughly the same order in 
+which they appear in the tutorial. (All commands that begin with a colon
+ are followed by ENTER.)</p>
+
+<table cellspacing="6" border="0">
+
+<tbody><tr width="100%"><td width="65"><b>vi</b></td><td> typed at the command line to open one or more files in the same directory  </td></tr>
+
+<tr><td></td><td> (<code>vi tomato.txt</code>  &nbsp; opens a file named "tomato.txt" in the current directory)   </td></tr>
+
+<tr><td></td><td> (<code>vi parsley sage rosemary</code>  &nbsp; opens the three files "parsley," "sage" and "rosemary" in the current directory)   </td></tr>
+
+<tr><td><b>vi *</b></td><td>typed at the command line to open every file in the current directory   </td></tr>
+
+
+<tr><td><b>:q</b></td><td> closes (quits) a file to which no changes have been made  </td></tr>
+
+<tr><td><b>:q!</b></td><td> quits without saving any changes  </td></tr>
+
+<tr><td><b>:w</b></td><td> writes (i.e., saves) the current file to disk  </td></tr>
+
+<tr><td><b>:wq</b></td><td>  writes the buffer contents to disk (i.e., saves changes) and quits </td></tr>
+
+<tr><td><b>ZZ</b></td><td>  same as <b> :wq </b> </td></tr>
+
+<tr><td><b>i</b></td><td>  activates text insert mode, inserting text immediately under the current position of the cursor  </td></tr>
+
+<tr><td><b>h</b></td><td> moves the cursor one character to the left</td></tr>
+
+<tr><td></td><td> (<code>2h</code> &nbsp; moves the cursor two characters to the left)</td></tr>
+
+<tr><td><b>j</b></td><td> moves the cursor one line down</td></tr>
+
+
+<tr><td></td><td> (<code>3j</code>  &nbsp; moves the cursor three lines down)</td></tr>
+
+<tr><td><b>k</b></td><td> moves the cursor one line up</td></tr>
+
+<tr><td><b>l</b></td><td> moves the cursor one character to the right</td></tr>
+
+<tr><td><b>G</b></td><td> moves the cursor to the desired line; moves the cursor to the last line of text if not preceded by a modifying integer</td></tr>
+
+<tr><td></td><td> (<code>5G </code>   &nbsp; moves the cursor to the fifth line) </td></tr>
+
+
+<tr><td><b>a</b></td><td>  switches to insert mode and allows insertion of text immediately to the right of the cursor </td></tr>
+
+<tr><td><b>x</b></td><td> deletes the character immediately under the cursor</td></tr>
+
+<tr><td></td><td> (<code>xxx </code>   &nbsp; deletes the character immediately under cursor and then deletes the two characters to its  right) </td></tr>
+
+<tr><td><b>X</b></td><td> deletes a single character to the left of cursor  </td></tr>
+
+
+<tr><td><b>D</b></td><td> removes the text on the current line from the character under the cursor to the end of the line </td></tr>
+
+<tr><td><b>dw</b></td><td> deletes the character immediately under the cursor and the remaining characters to the right of it in the same word  </td></tr>
+
+<tr><td></td><td>  (<code>2dw  </code> &nbsp; deletes the character 
+immediately under the cursor, the remaining characters to the right of 
+it in same word and all of the next word)   </td></tr>
+
+<tr><td><b>dd</b></td><td> deletes the entire line containing the cursor, and the cursor then moves to the next line  </td></tr>
+
+<tr><td></td><td> (<code>2dd  </code>  &nbsp; deletes two consecutive lines beginning with the current line)  </td></tr>
+
+<tr><td><b>cw</b></td><td>  deletes the character under the cursor and 
+to its right in the same word and allows new characters to be typed in 
+to replace them </td></tr>
+
+<tr><td></td><td>(<code>2cw  </code>  &nbsp;   deletes the character 
+under the cursor and to its right in the same word and in the next word,
+ and then allows replacement characters to be typed in)  </td></tr>
+
+<tr><td><b>cc</b></td><td> erases the current line and allows replacement text to be typed in </td></tr>
+
+<tr><td></td><td> (<code>2cc </code> &nbsp; erases the current line and the next line and allows replacement text to be typed in for both lines)  </td></tr>
+
+<tr><td><b>cb</b></td><td> deletes the characters to the left of the cursor in the current word and allows replacement characters to be typed in </td></tr>
+
+<tr><td></td><td>(<code>3cb  </code>  &nbsp; deletes the characters to 
+the left of the cursor in the current word together with the two words 
+to its left and then allows replacement text to be typed in)  </td></tr>
+
+<tr><td><b>R</b></td><td> activates text input mode allowing text under and to the right of the cursor to be overwritten one character at a time</td></tr>
+
+<tr><td><b>xp</b></td><td> transposes two adjacent characters  </td></tr>
+
+<tr><td><b>deep</b></td><td> transposes two adjacent words  </td></tr>
+
+
+<tr><td><b>ddp</b></td><td> transposes two adjacent lines  </td></tr>
+
+<tr><td><b>~</b></td><td> changes case of the character under the cursor  </td></tr>
+
+<tr><td><b>J</b></td><td> joins the current line with the next line  </td></tr>
+
+<tr><td><b>u</b></td><td>  reverses the effects of the most recent command that has changed the buffer  </td></tr>
+
+<tr><td><b>U</b></td><td> undoes all changes made to the current line during the current visit to it  </td></tr>
+
+<tr><td><b>:s/</b></td><td> searches the text for the first instance of a designated string  </td></tr>
+
+<tr><td></td><td>(<code>:s/cucumber  </code> &nbsp; searches the text for the first instance of the string "cucumber")   </td></tr>
+
+<tr><td><b>n</b></td><td> searches the text for the next instance of a designated string  </td></tr>
+
+
+<tr><td><b>:s/ / /</b></td><td> replaces the first instance of a designated string  </td></tr>
+
+<tr><td></td><td>(<code>:s/cucumber/radish/</code> &nbsp; replaces the first instance of the string "cucumber" with the string "radish")   </td></tr>
+
+<tr><td><b>:%s/ / /</b></td><td> replaces every instance of a designated string  </td></tr>
+
+<tr><td></td><td>(<code>:%s/cucumber/radish/  </code> &nbsp; replaces every instance of the string "cucumber" with the string "radish")   </td></tr>
+
+<tr><td><b>:r</b></td><td> inserts text into the currently open file from another file </td></tr>
+
+
+<tr><td></td><td>(<code>:r lettuce.txt   </code> &nbsp; inserts text into the currently open file from the file named "lettuce.txt")   </td></tr>
+
+<tr><td><b>:w&gt;&gt;</b></td><td> appends the text from the currently open file into another file </td></tr>
+
+<tr><td></td><td>(<code>:w&gt;&gt;  cabbage   </code> &nbsp; appends the text from the currently open file into the file named "cabbage")   </td></tr>
+
+
+
+
+</tbody></table>
+
+
+
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+          
+<p class="vilink">Next: <a href="http://www.linfo.org/vi/clones.html">vi Clones</a>   
+
+</p><p><br>
+</p>
+
+      
+
+
+<!-- Copyright 2004 Paul Zimmer. All Rights Reserved. -->
+
+</td><td border="0" width="10%"></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

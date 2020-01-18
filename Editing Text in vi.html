@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="Editing%20Text%20in%20vi_files/belug1.css">
+
+<title>Editing Text in vi</title></head>
+
+<body bgcolor="#ffffff">
+
+
+<a href="http://www.bellevuelinux.org/">BELUG</a> &gt;
+<a href="http://www.linfo.org/vi/index.html">vi</a> &gt;
+<a href="http://www.linfo.org/vi/enter.html">previous</a>
+
+
+<br><center><h1>Editing Text</h1></center>
+
+
+<table width="100%" border="0"><tbody><tr><td border="0" width="10%"></td><td border="0" width="80%">
+
+
+
+
+
+
+<p>vi offers a rich assortment of commands for editing text. Among the most basic are those used for deleting or erasing. </p>
+
+<p>The <b>x</b>  (lower case "x") command deletes the character 
+immediately under (i,e., covered by) the cursor. To delete any desired 
+character, just switch to the command mode (if you are not already 
+there) and then use an appropriate combination of the <b>h</b>, <b>j</b>, <b>k</b> and <b>l</b> commands (of course, one at a time) to move the cursor to that character. Then type <code>x</code>
+and the character is deleted.
+</p>
+
+
+<p>By pressing <code>x</code> continuously instead of just hitting it 
+once, the cursor continuously moves to the right and each character 
+under it is successively deleted.</p>
+
+<p>The <b>X</b> (upper case "X") command is similar except that it 
+deletes the character to the left of the cursor rather than the 
+character under it.
+
+</p><p>There are several additional commands for deleting text. The
+ <b>D</b> (upper case "D") command removes the text on the current line from the character under the cursor to the end of the line. 
+
+</p>
+
+
+<p>
+The  <b>d</b> (lower case "d") command is  very flexible because it can 
+be modified to delete any number of characters, words or lines. Typing 
+<code>d</code> by itself will not do anything, but typing <code>dw</code>
+ causes the character the cursor is resting on and the remaining 
+characters to the right of it in the same word to be deleted. (The "w" 
+stands for "word.") </p>
+
+
+<p>
+Typing <code>2dw</code> causes the character under the cursor, the 
+remaining characters to the right of it in the same word and all of the 
+characters in the next word to be deleted. For example, typing <code>2dw</code> with the cursor on the "a" of the string "pineapple plantation" causes the string "apple plantation" to be deleted. 
+</p>
+
+
+<p>
+As another example, typing <code>3dw</code> with the cursor on the "j" 
+of the string "the bluejay flew south" causes the string "jay flew 
+south" to be deleted. That is,  "jay" and two words to the right of it 
+are deleted. 
+</p>
+
+
+<p>
+
+Deleting an entire line can be accomplished with the  <b>dd</b> command.
+ This command can also be used to delete multiple lines by preceding it 
+with an integer representing the number of lines to be removed. For 
+example, typing <code>2dd</code> will delete two consecutive lines beginning with the current line. 
+</p>
+
+<p>
+
+With some terminals, deletion of a line causes it to be replaced on the 
+screen with  an "@" character.
+This character merely represents an empty line and is not inserted into 
+the text. Its purpose is to relieve the processor from having to redraw 
+the screen (i.e., change the whole screen). This character can be 
+removed if desired by 
+typing <code>r</code> (or <code>l</code> on some terminals) while holding down the CTRL key.
+
+</p>
+
+
+<p>
+The change command <b>c</b> (lower case "c")  differs from the delete 
+command in that it not only deletes a section of text but also activates
+ insert mode to allow you to type in replacement text. After you have 
+completed typing in the replacement  text, be sure to press ESC to 
+return to the command mode.
+</p>
+
+<p>
+As is the case with <b>d</b>, the <b>c</b> command is not used by itself but is only used in combination with another letter after it and an optional integer before it. 
+</p>
+
+<p> For example, the command <b>cw</b> (which stands for "change word") 
+deletes the characters in the current word under and to the right of the
+ cursor and then switches vi to the insert mode so that you can enter 
+text to replace the deleted characters. The number of new characters 
+typed in can be the same as, fewer or more than the number deleted.
+</p>
+
+<p>
+The amount of text to be changed can be increased by preceding the command with a number. For instance, typing <code>2cw</code>
+ will additionally remove the next word for replacement with whatever is
+ typed in. The space between the words is not preserved. 
+</p>
+
+
+<p>
+The <b>d</b> and <b>c</b> commands can also be modified by  other 
+characters in addition to "w." For example they can be used with "b," 
+which stands for "back." Thus, typing <code>3bd</code> will delete the 
+characters to the left of the cursor in the current word together with 
+the two words to the left of the current word.                
+</p>
+
+<p>
+The <b>cc</b> command erases the current line, leaving it blank and 
+awaiting replacement text. Preceding this command with an integer will 
+delete that number of lines, beginning with the current line. For 
+example, typing <b>5cc</b> will allow you to change five consecutive lines starting with the current line. </p>
+
+<p>
+Another change command, <b>R</b>, differs from the <b>c</b> commands in that it does not initially delete anything. Rather, it
+activates insert mode and lets you replace the characters under the cursor one at a time with characters that you type in. 
+</p>
+
+
+<p>
+vi supports several types of transposition. 
+Transposing the order of two adjacent characters is easy with the  <b>xp</b> command. Just place the cursor on the left-most of the two characters, type <code>x</code> to erase the left character and then type <code>p</code> for the deleted character to be put to the right of the cursor. 
+</p>
+
+<p>
+Two adjacent words can be transposed with the <b>deep</b> command. To use it, position the cursor in the space just to the left of the word on the left and type <code>deep</code>.      Two adjacent lines can be transposed with the <b>ddp</b> command by placing the cursor on the upper line and typing <code>ddp</code>.
+
+</p>
+
+<p>It is also a simple matter to change the case of a letter. When the 
+cursor is over the desired letter, hit the "~" (tilde) key. This will 
+change a capital letter to a small letter and visa versa.
+</p>
+
+
+<p>
+The <b>J</b> (upper case "J") command is used to join the next line to 
+the current line. The opposite operation, splitting a line, is 
+accomplished in insert mode by merely positioning the cursor over what 
+will be the first character of the new line and then hitting ENTER.
+</p>
+
+<p>
+vi also has an undo capability. The  <b>u</b> (lower case "u") command 
+is used to reverse the effects  of an already issued command that has 
+changed the buffer, but which is not yet written to disk. <b>U</b> (upper case "U") undoes all of the changes that have been made to the current line during your current visit to it.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+          
+<p class="vilink">Next: <a href="http://www.linfo.org/vi/search.html">Searching and Replacing</a>   
+
+</p><p><br>
+</p>
+
+      
+
+
+<!-- Copyright 2004 Paul Zimmer. All Rights Reserved. -->
+
+</td><td border="0" width="10%"></td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

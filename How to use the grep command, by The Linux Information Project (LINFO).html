@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="How%20to%20use%20the%20grep%20command,%20by%20The%20Linux%20Information%20Project%20(LINFO)_files/belug1.css">
+
+<title>How to use the grep command, by The Linux Information Project (LINFO)</title></head>
+
+<body bgcolor="#ffffff">
+
+<a href="http://www.linfo.org/index.html">LINFO</a>
+
+<br><center><h1>The grep Command</h1></center><br>
+
+<table width="100%"><tbody><tr><td width="10%"></td><td width="80%">
+
+<br>
+
+<p>
+<i>grep</i> is used to search text for patterns specified by the user. It is one of the most useful and powerful <a href="http://www.linfo.org/command.html">commands</a> on <a href="http://www.linfo.org/linuxdef.html">Linux</a> and other <a href="http://www.linfo.org/unix-like.html">Unix-like</a> <a href="http://www.linfo.org/operating_system.html">operating systems</a>.
+</p>
+
+<p>
+grep's basic syntax is 
+</p>
+
+<blockquote>
+<p>
+<code>grep [option(s)] pattern [file(s)]</code>
+</p>
+</blockquote>
+
+<p>
+The items in square brackets are optional. When used with no <a href="http://www.linfo.org/option.html">options</a> and no <a href="http://www.linfo.org/argument.html"><i>arguments</i></a> (i.e., input <a href="http://www.linfo.org/filedef.html">files</a>), grep searches <a href="http://www.linfo.org/standard_input.html"><i>standard input</i></a> (which by default is text typed in at the keyboard) for the specified pattern and returns each <i>line</i> that contains a match to <a href="http://www.linfo.org/standard_output.html"><i>standard output</i></a> (which by default is the display screen).
+</p>
+
+<p>
+A line of text is defined in this context not as what appears as a line 
+of text on the display screen but rather as all text between two <i>newline</i> <a href="http://www.linfo.org/character.html">characters</a>. Newline characters are invisible characters that are represented in Unix-like operating systems by a <a href="http://www.linfo.org/backslash.html">backslash</a> followed by the letter <i>n</i> and which are created when a user presses the ENTER key when using a <a href="http://www.linfo.org/text_editor.html">text editor</a> (such as <a href="http://www.linfo.org/gedit.html">gedit</a>). Thus, a line of text returned by grep can be as short as a single character or occupy many lines on the display screen.
+</p>
+
+<p>
+grep can search any number of files simultaneously. Thus, for example, the following would search the three files <i>file1</i>, <i>file2</i> and <i>file3</i> for any line that contains the <a href="http://www.linfo.org/string.html"><i>string</i></a> (i.e., sequence of characters) <i>Lin</i>:
+</p>
+
+<blockquote>
+<p>
+<code>grep Lin file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+Each result is displayed beginning on a separate line, and it is 
+preceded by the name of the file in which it was found in the case of 
+multiple files. The inclusion of the file names in the output data can 
+be suppressed by using the <i>-h</i> option.
+</p>
+
+<p>
+grep is not limited to searching for just single strings. It can also 
+search for sequences of strings, including phrases. This is accomplished
+ by enclosing the sequence of strings that forms the pattern in 
+quotation marks (either single or double). Thus, the above example could
+ be modified to search for the phrase <i>Linux is</i>:
+</p>
+
+<blockquote>
+<p>
+<code>grep 'Linux is' file1 file2 file3</code>
+</p>
+</blockquote>
+
+<p>
+Text searches with grep can be considerably broadened by combining them with <a href="http://www.linfo.org/wildcard.html"><i>wildcards</i></a> and/or performing <i>recursive</i>
+ searches. A wildcard is a character that can represent some specific 
+class of characters or sequence of characters. The following is a 
+modification of the above example that uses the <i>star wildcard</i> (i.e., an asterisk), which represents <i>any</i> character or sequence of characters, to search <i>all</i> text files in the <a href="http://www.linfo.org/current_directory.html"><i>current directory</i></a> (i.e., the directory in which the user is currently working):
+</p>
+
+<blockquote>
+<p>
+<code>grep 'Linux is' *</code>
+</p>
+</blockquote>
+
+<p>
+grep's search area can be broadened even further by using its <i>-r</i> option to search <i>recursively</i> through an entire <a href="http://www.linfo.org/directory_tree.html"><i>directory tree</i></a>
+ (i.e., a directory and all levels of subdirectories within it) rather 
+than just the files within a specified directory. For example, the 
+following would search all files in the current directory and in all of 
+its subdirectories (including their subdirectories, etc.) for every line
+ containing the full name of the creator of Linux:
+</p>
+
+<blockquote>
+<p>
+<code>grep -r 'Linus Torvalds' *</code>
+</p>
+</blockquote>
+
+<p>
+One of the most commonly employed of grep's many options is <i>-i</i>, which instructs it to ignore <i>case</i>, that is, to ignore whether letters in the pattern and text searched are <a href="http://www.linfo.org/lower_case.html">lower case</a>
+ (i.e., small letters) or upper case (i.e., capital letters). Thus, for 
+instance, the previous example could very easily be converted to a 
+case-insensitive search as follows: 
+</p>
+
+<blockquote>
+<p>
+<code>grep -ir 'Linus Torvalds' *</code>
+</p>
+</blockquote>
+
+<p>
+This would produce the same results as
+</p>
+
+<blockquote>
+<p>
+<code>grep -ir 'linUS torvAlds' *</code>
+</p>
+</blockquote>
+
+<p>
+Another frequently used option is <i>-c</i>, which causes grep to only 
+report the number of times that the pattern has been matched for each 
+file and to not display the actual lines. Thus, for instance, the 
+following would show the total number of times that the string <i>inu</i> appears in a file named <i>file4</i>:
+</p>
+
+<blockquote>
+<p>
+<code>grep -c inu file4</code>
+</p>
+</blockquote>
+
+<p>
+Another useful option is <i>-n</i>, which causes grep to precede each line of output with the number of the line in the text file from which it was obtained. The <i>-v</i> option inverts the match; that is, it matches only those lines that do <i>not</i> contain the given pattern. The <i>-w</i> option tells grep to select only those lines that contain an entire word or phrase that matches the specified pattern. The <i>-x</i> option tells grep to select only those lines that match exactly the specified pattern.
+</p>
+
+<p>
+The <i>-l</i> option tells grep to not return the lines containing 
+matches but to only return only the names of the files that contain 
+matches. The <i>-L</i> option is the opposite of the <i>-l</i> option 
+(and analogous to the -v option) in that it will cause grep to return 
+only the names of files that do not contain the specified pattern.
+</p>
+
+<p>
+grep does not search the names of files for a specified pattern, only 
+the text contained within files. However, sometimes it is useful to 
+search the names of files, as well as of directories and links, rather 
+than the contents of files. Fortunately, this can easily be accomplished
+ by first using the <i>ls</i> command to list the contents of a directory and then using a <a href="http://www.linfo.org/pipe.html"><i>pipe</i></a>
+ (which is represented by the vertical bar character) to transfer its 
+output to grep for searching. For example, the following would provide a
+ list of all files, directories and links in the current directory that 
+contain the string <i>linu</i> in their names: 
+</p>
+
+<blockquote>
+<p>
+<code>ls | grep linu</code>
+</p>
+</blockquote>
+
+<p>
+The following example uses ls with its <i>-l</i> (i.e., <i>long</i>) option (which is unrelated to grep's <i>-l</i> option) to find all filesystem objects in the current directory whose <a href="http://www.linfo.org/permissions.html"><i>permissions</i></a> have been set so that any user can read, write and execute them:
+</p>
+
+<blockquote>
+<p>
+<code>ls -l | grep rwxrwxrwx</code>
+</p>
+</blockquote>
+
+<p>
+grep is very useful for obtain information from log and configuration 
+files. For example, it can be used to obtain information about the USB 
+(universal serial bus) devices on a system by filtering the output from 
+the <a href="http://www.linfo.org/dmesg.html"><i>dmesg</i></a> command (which provides the messages from the <a href="http://www.linfo.org/kernel.html">kernel</a> as a system is <a href="http://www.linfo.org/boot.html">booting up</a>) as follows: 
+</p>
+
+<blockquote>
+<p>
+<code>dmesg | grep -i usb</code>
+</p>
+</blockquote>
+
+<p>
+Among grep's other options are <i>--help</i>, which provides a very compact summary of some of its many capabilities, and <i>-V</i>, or <i>--version</i>, which provides information about the currently installed version.  
+</p>
+
+<p>
+grep's search functionality can be even further refined through the use of <i>regular expressions</i>.
+ These are a pattern matching system that uses strings constructed 
+according to pre-defined syntax rules to find desired patterns in text. 
+Additional information about grep, including its use with regular 
+expressions, can be obtained from its built-in manual page by using the <a href="http://www.linfo.org/man.html"><i>man</i></a> command, i.e.,
+</p>
+
+<blockquote>
+<p>
+<code>man grep</code>
+</p>
+</blockquote>
+
+<p>
+The name <i>grep</i> comes from a command in <i>ed</i>, which was the original text editor on the <a href="http://www.linfo.org/unix_upper.html">UNIX</a> operating system. The command takes the form <i>g/re/p</i>, which means to search <i>globally</i> for matches to the regular expression (i.e., <i>re</i>), and <i>print</i> (which is UNIX terminology for write on the display screen) lines that are found. 
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+
+<p class="copy">Created July 30, 2006.<br>
+Copyright © 2006 The Linux Information Project. All Rights Reserved.</p>
+
+</td><td width="10%"></td></tr></tbody></table>
+
+
+</body></html>
